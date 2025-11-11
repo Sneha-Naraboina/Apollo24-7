@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="3.82" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-11-11T07:34:04.743107100Z">
+<testcase classname="Lab Tests Navigation" name="Navigate  to Lab Tests page" time="2.76">
+<failure type="java.lang.AssertionError" message="Navigation failed">
+<![CDATA[java.lang.AssertionError: Navigation failed
+	at org.testng.Assert.fail(Assert.java:111)
+	at com.stepDefinitionTestNG.LabTestsNavigationSteps.user_is_on_apollo247_homepage(LabTestsNavigationSteps.java:182)
+	at ✽.user is on Apollo247 Homepage(file:///C:/TRAINING/JAVA/Apollo247/Apollo247/./src/test/resources/com/Features/LabTestsNavigation.feature:7)
+]]>
+</failure>
+<system-out><![CDATA[
+Given user is on Apollo247 Homepage.........................................failed
+When user clicks on Lab Tests Link..........................................skipped
+And user clicks on View All Link............................................skipped
+Then should be display View All page........................................skipped
+]]></system-out>
+</testcase>
+</testsuite>
