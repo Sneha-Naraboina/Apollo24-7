@@ -1,43 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-11T22:06:03 IST" name="Default suite" finished-at="2025-11-11T22:06:20 IST" duration-ms="17576">
+  <suite started-at="2025-11-11T23:06:15 IST" name="Default suite" finished-at="2025-11-11T23:06:27 IST" duration-ms="12199">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-11-11T22:06:03 IST" name="Default test" finished-at="2025-11-11T22:06:20 IST" duration-ms="17576">
+    <test started-at="2025-11-11T23:06:15 IST" name="Default test" finished-at="2025-11-11T23:06:27 IST" duration-ms="12199">
       <class name="com.runner.TestRunnerTestNG">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T22:06:03 IST" name="setUpClass" finished-at="2025-11-11T22:06:04 IST" duration-ms="895" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:15 IST" name="setUpClass" finished-at="2025-11-11T23:06:15 IST" duration-ms="776" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@43471a7e]]>
+                <![CDATA[org.testng.TestRunner@7cb8437d]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T22:06:04 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-11T22:06:20 IST" duration-ms="16483" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:15 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-11T23:06:27 IST" duration-ms="11324" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Add a test to the cart and verify cart count"]]>
+                <![CDATA["Navigating to Join Circle from Circle Membership"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Lab Tests Navigation"]]>
+                <![CDATA["Circle Membership Functionality"]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "this.wait" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "this.wait" is null
+at com.stepDefinitionTestNG.Profile.the_circle_membership_page_is_visible(Profile.java:37)
+at ✽.the circle membership page is visible(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:7)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T22:06:20 IST" name="tearDownClass" finished-at="2025-11-11T22:06:20 IST" duration-ms="128" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:27 IST" name="tearDownClass" finished-at="2025-11-11T23:06:27 IST" duration-ms="40" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
