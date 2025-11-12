@@ -7,7 +7,9 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
     features = "src\\test\\resources\\Features\\CircleMembership.feature", // Path to feature files
     glue = {"com.stepDefinitionTestNG"}, // Step definitions & hooks
-    plugin = {"pretty","html:target/cucumber-reports/cucumber.html" },
+    //tags = "@join",
+    plugin = {"pretty","html:target/cucumber-reports/cucumber.html" }, 
+    
     monochrome = true
 )
 public class TestRunnerTestNG extends AbstractTestNGCucumberTests {

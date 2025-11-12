@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-11T23:06:15 IST" name="Default suite" finished-at="2025-11-11T23:06:27 IST" duration-ms="12199">
+  <suite started-at="2025-11-12T23:04:31 IST" name="Default suite" finished-at="2025-11-12T23:04:47 IST" duration-ms="16448">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2025-11-11T23:06:15 IST" name="Default test" finished-at="2025-11-11T23:06:27 IST" duration-ms="12199">
+    <test started-at="2025-11-12T23:04:31 IST" name="Default test" finished-at="2025-11-12T23:04:47 IST" duration-ms="16448">
       <class name="com.runner.TestRunnerTestNG">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:15 IST" name="setUpClass" finished-at="2025-11-11T23:06:15 IST" duration-ms="776" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-12T23:04:31 IST" name="setUpClass" finished-at="2025-11-12T23:04:32 IST" duration-ms="747" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@7cb8437d]]>
+                <![CDATA[org.testng.TestRunner@28c86134]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:15 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-11T23:06:27 IST" duration-ms="11324" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-12T23:04:32 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-12T23:04:39 IST" duration-ms="7504" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA["Navigating to Join Circle from Circle Membership"]]>
+                <![CDATA["Clicking on Circle Membership opens the available Plans"]]>
               </value>
             </param>
             <param index="1">
@@ -34,21 +34,26 @@
               </value>
             </param>
           </params>
-          <exception class="java.lang.NullPointerException">
-            <message>
-              <![CDATA[Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "this.wait" is null]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.support.ui.WebDriverWait.until(java.util.function.Function)" because "this.wait" is null
-at com.stepDefinitionTestNG.Profile.the_circle_membership_page_is_visible(Profile.java:37)
-at ✽.the circle membership page is visible(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:7)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-11T23:06:27 IST" name="tearDownClass" finished-at="2025-11-11T23:06:27 IST" duration-ms="40" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-12T23:04:39 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2025-11-12T23:04:47 IST" duration-ms="8091" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Navigate to Join Circle from CircleMembership"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Circle Membership Functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:com.runner.TestRunnerTestNG@7e9131d5]" started-at="2025-11-12T23:04:47 IST" name="tearDownClass" finished-at="2025-11-12T23:04:47 IST" duration-ms="41" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
