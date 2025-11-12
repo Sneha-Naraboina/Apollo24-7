@@ -1,111 +1,98 @@
-package com.stepDefinitionTestNG;
+//package com.stepDefinitionTestNG;
+// 
+//import org.openqa.selenium.WebDriver;
+// 
+//import com.setup.BaseSteps;
+// 
+//import io.cucumber.java.After;
+//import io.cucumber.java.Before;
+// 
+//public class Hooks extends BaseSteps {
+// 
+//	 public static WebDriver driver;
+// 
+////	 @Before
+////	    public void beforeScenario() {
+////	        BaseSteps.launchBrowser();
+////	    }
+// 
+//	    @After
+//	    public void afterScenario() throws InterruptedException {
+//	        BaseSteps.closeBrowser();
+//	    }
+// 
+//}
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert; // ✅ For assertions
 
-import com.pages.CheckoutPage;
-import com.pages.ConsultPage;
-import com.pages.FindDoctorsPage;
-import com.pages.LoginPage;
-import com.pages.PaymentPage;
-import com.parameters.ExcelReader;
-import com.setup.BaseSteps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario; // ✅ For hooks
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 
-public class Hooks {
-WebDriver driver;
-LoginPage loginPage;
-FindDoctorsPage findDoctorsPage;
-ConsultPage consultPage;
-CheckoutPage checkoutPage;
-PaymentPage paymentPage;
-BaseSteps baseSteps;
-ExcelReader excelReader;
 
-@Before
-public void setup() {
-    loginPage = new LoginPage(driver);
-    findDoctorsPage = new FindDoctorsPage(driver);
-//    consultPage = new ConsultPage(driver);
-//    checkoutPage = new CheckoutPage(driver);
-//    paymentPage = new PaymentPage(driver);
-      baseSteps=new BaseSteps();
-}
+//==========the above is original code===========
 
-//-----------------------------------Background--------------------------------------------------------
-		
 
-@Given("User open Apollo Pharmacy website")
-public void user_open_apollo_pharmacy_website() throws FileNotFoundException, IOException {
-	baseSteps = new BaseSteps();
-	excelReader= new ExcelReader();
-	baseSteps.setup();
-	driver = baseSteps.getDriver();
-	System.out.println("User loads the url");
-}
 
-@Then("User login using mobile number and OTP")
-public void user_login_using_mobile_number_and_otp(io.cucumber.datatable.DataTable table) throws InterruptedException, FileNotFoundException, IOException {        
-	loginPage=new LoginPage(driver);
-	Thread.sleep(2000);
-	loginPage.loginBtn();
-	List<String> data = table.asList();
-	System.out.println(data.size());
-	System.out.println(data.get(0));
-    loginPage.phoneNumber(data.get(0));
-    loginPage.continueBtn();
-    Thread.sleep(5000);
-    loginPage.verifyBtn();
-    System.out.println("User login successfully and redirected to homepage");
-}
+//package com.stepDefinitionTestNG;
+//
+//import com.setup.BaseSteps;
+//import org.openqa.selenium.WebDriver;
+//import io.cucumber.java.After;
+//import io.cucumber.java.Before;
+//
+//public class Hooks extends BaseSteps {
+//    public static WebDriver driver;
+//
+//    @Before
+//    public void beforeScenario() {
+//        BaseSteps.launchBrowser();
+//    }
+//
+//    @After
+//    public void afterScenario() throws InterruptedException {
+//        BaseSteps.closeBrowser();
+//    }
+//}
 
-@When("User click on Find Doctors")
-public void user_click_on_find_doctors() {
-        	findDoctorsPage = loginPage.findDoctorsbtn();
-}
+//====below sneha
 
-@Then("Doctors module should be displayed")
-public void doctors_module_should_be_displayed() {
-	Assert.assertTrue(findDoctorsPage.isDoctorSearchVisible(), "Doctors module is not displayed.");
-}
-
-//-----------------------------------First scenario--------------------------------------------------------
-	
-
-@When("User search on search bar")
-public void user_search_on_search_bar() {
-	findDoctorsPage.clickSearchBar();
-}
-
-@Then("search for invalid Doctor names {int} and {int}")
-public void search_for_invalid_doctor_names_and(Integer sheetNo, Integer rowNo) throws IOException {
-	excelReader.readExcel();
-	String invalidName = excelReader.getCellData1(sheetNo, rowNo);
-	findDoctorsPage.enterSearchQuery(invalidName);
-	
-}
-
-@Then("No results found message should be displayed")
-public void no_results_found_message_should_be_displayed() {
-	Assert.assertTrue(findDoctorsPage.isNoResultsMessageDisplayed(), "No Results message is NOT displayed");
-	
-}
-
-@After
-   public void tearDown(Scenario scenario) {
-       // Example: attach screenshot or log status
-       if (scenario.isFailed()) {
-           System.out.println("Scenario failed: " + scenario.getName());
-       }
-   }
-}
+//package com.stepDefinitionTestNG;
+// 
+// 
+//import com.aventstack.extentreports.ExtentReports;
+//import com.aventstack.extentreports.ExtentTest;
+//import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+//import com.setup.BaseSteps;
+// 
+//import io.cucumber.java.After;
+//import io.cucumber.java.AfterAll;
+//import io.cucumber.java.Before;
+//import io.cucumber.java.BeforeAll;
+//import io.cucumber.java.Scenario;
+// 
+//public class Hooks extends BaseSteps {
+// 
+//	public static ExtentSparkReporter spark; // classes of extend reports, what should be color of reports
+//    public static ExtentReports extReports; //what to track on report(tester name, date etc..,)
+//    public static ExtentTest test; // it will track the test cases
+//    @BeforeAll // run code before feature file starts
+//    public static void beforeAll() {
+//        spark = new ExtentSparkReporter(".\\target\\ExtentReport.html"); // for extends report
+//        extReports = new ExtentReports();
+//        extReports.attachReporter(spark);
+//    }
+//    @AfterAll
+//    public static void afterAll() { // after file rends this will run
+//        extReports.flush(); // to generate extentreport like commit method
+//    }
+//    @Before // before every scenario
+//    public void beforeScenario(Scenario scenario) {
+//        test = extReports.createTest(scenario.getName()); // on the test, track the name of scenario
+//       launchBrowser(); // fresh browser will launch
+//    }
+//
+//    @After // after every scenario
+//    public void afterScenario() {
+//        sleep(4000);
+//        driver.quit();
+//    }
+//}
