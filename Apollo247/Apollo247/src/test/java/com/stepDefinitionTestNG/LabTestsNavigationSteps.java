@@ -1,13 +1,11 @@
 package com.stepDefinitionTestNG;
  
-import java.io.File;
+import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 
 import com.pages.HomePage;
+import com.parameters.ExcelReader;
 import com.parameters.PropertyReader;
 import com.setup.BasePage;
 
@@ -61,18 +59,55 @@ public class LabTestsNavigationSteps extends BasePage {
     		Assert.assertTrue(homePage.verifyPopupDisplayed(), "Pop-up did not appear after adding to cart!");
     	
         
-        
-    // Take screenshot for debugging
-         try {
-             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-             FileUtils.copyFile(screenshot, new File("target/screenshots/ViewAllPage.png"));
-         } catch (Exception e) {
-             System.out.println("Screenshot capture failed: " + e.getMessage());
-         }
-     }
- }
+    	}	
+    		
+    	@When("I click on the Sort By dropdown")
+    	public void i_click_on_the_sort_by_dropdown() {
+    	    homePage.clickSortBy();
+    	}
+
+//    	@When("I select SortOption from Excel")
+//    	public void i_select_sortoption_from_excel() {
+//    	    String sortOption = ExcelDataManager.getNextSortOption();
+//    	    homePage.selectSortOption(sortOption);
+//    	}
+    	
+   
+    	@And("I select SortOption from Excel {int} {int}")
+    	public void i_select_sort_option_from_excel(Integer sheetno, Integer row) throws IOException {
+    	    // Read SortOption from Excel using sheet index and row
+    	    String sortOption = ExcelReader.getCellData(sheetno, row, 0); // Column is fixed as 0
+    	    System.out.println("Sort Option from Excel: " + sortOption);
+
+    	    // Select the option in dropdown
+    	    homePage.selectSortOptionFromExcel();
+    	}
+    	
+    	
+
+    	@Then("the list of lab tests should be display")
+    	public void the_list_of_lab_tests_should_be_display() {
+    		Assert.assertTrue(homePage.verifylowtohigh(), "Low to high tests is displayed !");
+    	}
+    	
+}
+
+
+//    // Take screenshot for debugging
+//         try {
+//             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//             FileUtils.copyFile(screenshot, new File("target/screenshots/ViewAllPage.png"));
+//         } catch (Exception e) {
+//             System.out.println("Screenshot capture failed: " + e.getMessage());
+//         }
+//    
+//        }
+//}
+
 
 
  
 
- 
+
+
+
