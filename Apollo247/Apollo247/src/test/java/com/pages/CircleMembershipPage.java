@@ -1,187 +1,138 @@
 package com.pages;
+
+import java.time.Duration;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CircleMembershipPage 
-{	
-	WebDriver driver;
+public class CircleMembershipPage {
 
-	private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
-    // Locators using PageFactory (constants for readability)
-    //private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
-    private static final String CIRCLE_MEMBERSHIP_HEADER = "//h1[contains(text(),'Circle Membership')]";
-    //private static final String PLANS_FOR_YOU_SECTION = "//h2[contains(text(),'Plans For You')]";
-    private static final String PLANS_FOR_YOU_TAB = "//a[contains(normalize-space(.),'Plans For You') or contains(.,'Plans For You')]";
-    //private static final String PLANS_FOR_YOU_SECTION = "/html/body/main/div/div/div[1]/div/ul/li[2]/a";
-    private static final String JOIN_CIRCLE_BUTTON = "//button[contains(text(),'Join Circle')]";
-    private static final String JOIN_CIRCLE_HEADER = "//h1[contains(text(),'Join Circle')]";
+    WebDriver driver;
 
+    // Locators moved to constants (no hardcoding in methods)
+    private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
+    //private static final String PLANS_FOR_YOU_SECTION = "//h2[contains(text(),'Plans for You')]";
+    
+    private static final String PLANS_FOR_YOU_SECTION = "/html/body/main/div/div/div[1]/div/ul/li[2]/a";
     @FindBy(xpath = CIRCLE_MEMBERSHIP_LINK)
     private WebElement circleMembershipLink;
 
-    @FindBy(xpath = CIRCLE_MEMBERSHIP_HEADER)
-    private WebElement circleMembershipHeader;
+    @FindBy(xpath = PLANS_FOR_YOU_SECTION)
+	public WebElement plansForYouSection;
 
-    @FindBy(xpath = PLANS_FOR_YOU_TAB)
-    private WebElement plansForYouTab;
-
-    @FindBy(xpath = JOIN_CIRCLE_BUTTON)
-    private WebElement joinCircleButton;
-
-    @FindBy(xpath = JOIN_CIRCLE_HEADER)
-    private WebElement joinCircleHeader;
-
-    // Constructor
     public CircleMembershipPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-   
-    // Actions
+
     public void clickCircleMembership() {
         circleMembershipLink.click();
     }
 
-    public boolean isCircleMembershipPageVisible() {
-        return circleMembershipHeader.isDisplayed();
+    public boolean isPlansSectionVisible() {
+        return plansForYouSection.isDisplayed();
     }
 
-    public void clickPlansForYou() 
-    {
-        plansForYouTab.click();
-    }
+	public WebElement getPlansForYouSection() {
+		// TODO Auto-generated method stub
+		return plansForYouSection;
+		//return null;
+	}
+	
+	
+	
+	
+	
+	//+++++++++++++++++++ second scenario +++++++++++++++++++++++++++++++++++
+	    
+	
+	    // Locators
+	    // private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
+	    private static final String JOIN_CIRCLE_BUTTON = "(//span[text()='Join Circle'])[2]";
+	    private static final String SIX_MONTHS_PLAN = " //h3[text()='149']"; //"//label[contains(text(),'6 Months')]";
+	    private static final String TWELVE_MONTHS_PLAN = "//label[contains(text(),'12 Months')]";
+	   private static final String SELECTED_PLAN_HEADER = "//div[contains(@class,'plan-header')]";
 
-    public boolean isAvailablePlansVisible() {
-        return plansForYouTab.isDisplayed();
-    }
+	    // WebElements
+//	    @FindBy(xpath = CIRCLE_MEMBERSHIP_LINK)
+//	    private WebElement circleMembershipLink;
 
-    public void clickJoinCircle() {
-        joinCircleButton.click();
-    }
+	    @FindBy(xpath = JOIN_CIRCLE_BUTTON)
+	    private WebElement joinCircleButton;
 
-    public boolean isJoinCirclePageVisible() {
-        return joinCircleHeader.isDisplayed();
-    }
+	    @FindBy(xpath = SIX_MONTHS_PLAN)
+	    private WebElement sixMonthsPlan;
 
-    // Getters for explicit waits
-    public WebElement getCircleMembershipHeader() {
-        return circleMembershipHeader;
-    }
+	    @FindBy(xpath = TWELVE_MONTHS_PLAN)
+	    private WebElement twelveMonthsPlan;
 
-    public WebElement getPlansForYouSection() {
-        return plansForYouTab;
-    }
+	    @FindBy(xpath = SELECTED_PLAN_HEADER)
+	    private WebElement selectedPlanHeader;
 
-    public WebElement getJoinCircleHeader() {
-        return joinCircleHeader;
-    }
- 
-   public WebElement getCircleMembershipLink()
-   {
-    return circleMembershipLink;
-   }	
-   
-}
-
-
-//   WebDriver driver;
-//
-//   // Locators moved to constants (no hardcoding in methods)
-//   private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
-//   //private static final String PLANS_FOR_YOU_SECTION = "//h2[contains(text(),'Plans for You')]";
-//   
-//   private static final String PLANS_FOR_YOU_SECTION = "/html/body/main/div/div/div[1]/div/ul/li[2]/a";
-//   @FindBy(xpath = CIRCLE_MEMBERSHIP_LINK)
-//   private WebElement circleMembershipLink;
-//
-//   @FindBy(xpath = PLANS_FOR_YOU_SECTION)
-//	public WebElement plansForYouSection;
-//
-//   public CircleMembershipPage(WebDriver driver) {
-//       this.driver = driver;
-//       PageFactory.initElements(driver, this);
-//   }
-//
-//   public void clickCircleMembership() {
-//       circleMembershipLink.click();
-//   }
-//
-//   public boolean isPlansSectionVisible() {
-//       return plansForYouSection.isDisplayed();
-//   }
-//
-//	public WebElement getPlansForYouSection() {
-//		// TODO Auto-generated method stub
-//		return plansForYouSection;
-//		//return null;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//package com.pages;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-// 
-//
-//public class CircleMembershipPage 
-//{
-//	WebDriver driver;
-//	   By circleMembershipLink = By.xpath("//a[contains(text(),'Circle Membership')]");
-//	    By plansForYouSection = By.xpath("//h2[contains(text(),'Plans for You')]");
-//
+	    // Constructor
 //	    public CircleMembershipPage(WebDriver driver) {
 //	        this.driver = driver;
+//	        PageFactory.initElements(driver, this);
 //	    }
-//
-//	    public void clickCircleMembership() 
-//	    {
-//	    	
-//	        driver.findElement(circleMembershipLink).click();
+
+	    // Click Circle Membership
+//	    public void clickCircleMembership() {
+//	        circleMembershipLink.click();
 //	    }
-//
-//	    public boolean isPlansSectionVisible() {
-//	        return driver.findElement(plansForYouSection).isDisplayed();
+
+	    // ✅ Click Join Circle button
+	    public void clickJoinCircle() {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        try {
+	            wait.until(ExpectedConditions.elementToBeClickable(joinCircleButton));
+	            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", joinCircleButton);
+	        } catch (Exception e) {
+	            System.out.println("Failed to click Join Circle button: " + e.getMessage());
+	        }
+	    }
+
+	    // ✅ Select plan based on properties
+	    public void selectPlan(String PlanType) {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        try {
+	            if (PlanType.equalsIgnoreCase("6Months")) {
+	                wait.until(ExpectedConditions.elementToBeClickable(sixMonthsPlan));
+	                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sixMonthsPlan);
+	            } else if (PlanType.equalsIgnoreCase("12Months")) {
+	                wait.until(ExpectedConditions.elementToBeClickable(twelveMonthsPlan));
+	                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", twelveMonthsPlan);
+	            } else {
+	                System.out.println("Invalid plan type specified in properties file.");
+	            }
+	        } catch (Exception e) {
+	            System.out.println("Failed to select plan: " + e.getMessage());
+	        }
+	    }
+	    
+	    public boolean isJoinCirclePageDisplayed() {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        try {
+	            wait.until(ExpectedConditions.visibilityOf(selectedPlanHeader));
+	            return selectedPlanHeader.isDisplayed();
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    }
+
+//	    // ✅ Verify selected plan header
+//	    public WebElement getSelectedPlanHeader() {
+//	        return selectedPlanHeader;
 //	    }
-//	}
+
+//	    public String getSelectedPlanText() {
+//	        return selectedPlanHeader.getText();
+//	    }
+	}
+
+
 
