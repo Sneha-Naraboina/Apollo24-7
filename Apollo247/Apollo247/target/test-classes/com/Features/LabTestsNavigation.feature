@@ -25,12 +25,30 @@ Scenario Outline: Navigate to Lab Tests and apply Sort By option
     And user clicks on View All Link
     Then should be display View All page
     When I click on the Sort By dropdown
-    And I select SortOption from Excel <sheetno> <row>
+    And I select SortOption from Excel <sheet> <row>
     Then the list of lab tests should be display
  
 
 
 Examples:
-| sheetno | row |
-| 0       | 1   |
-| 0       | 2   |
+| sheet | row |
+| 0     |  1  |
+| 0     |  2  |
+
+@TopDealsAndPackages
+Scenario Outline: Navigate to Lab Tests and apply TopDeals and Packages filters
+    Given user is on Apollo247 Homepage
+    When user clicks on Lab Tests Link
+    And user clicks on View All Link
+    Then should be display View All page
+    When I select filters from Excel <sheet> <row>
+    Then the filtered list of lab tests should be displayed
+
+Examples:
+| sheet | row |
+| 0     |  3  |
+| 0     |  4  |
+    
+
+
+

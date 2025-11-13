@@ -3,6 +3,7 @@ package com.pages;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -23,28 +24,22 @@ public class HomePage {
     @FindBy(xpath = "//a[text()='Lab Tests']")
     private WebElement labTestsLink;
 
-//    @FindBy(xpath = "//a[contains(text(),'View All')]")
-//    private WebElement viewAllLink;
-
     @FindBy(xpath = "//header[h2[contains(text(),'Top Booked Tests')]]//a[contains(text(),'View All')]")
     private WebElement viewAllLink;
-    
-//    @FindBy(xpath = "//h2[contains(text(),'Top Booked Tests')]")
-//    private WebElement verifyViewAll;
-    
 
     @FindBy(xpath = "//h1[contains(text(),'Top Booked Tests')]")
     private WebElement verifyViewAll;
     
 
     @FindBy(xpath = "//div[contains(@class,'sort-by-dropdown')]")
-    WebElement sortByDropdown;
-
-    @FindBy(xpath = "//ul[contains(@class,'sort-options')]/li")
-    List<WebElement> sortOptions;
-
-
-
+    private WebElement sortByDropdown;
+    
+    @FindBy (xpath = "//span[text()='Price: Low to High']")
+    private WebElement LowToHigh;
+    
+    @FindBy (xpath = "(//input[@type='checkbox'])[1]")
+    private WebElement topDeals;
+    
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -60,19 +55,13 @@ public class HomePage {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(viewAllLink));
-
-            // Scroll into view
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 
-            // Click normally first
             try {
                 element.click();
             } catch (Exception e) {
-                // Fallback to JS click
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
             }
-
-            // Wait for URL to change
             wait.until(ExpectedConditions.urlContains("top-booked-tests"));
 
         } catch (Exception e) {
@@ -102,14 +91,11 @@ public class HomePage {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement element = wait.until(ExpectedConditions.elementToBeClickable(addToCartButton));
 
-            // Scroll into view
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
 
-            // Try normal click
             try {
                 element.click();
             } catch (Exception e) {
-                // Fallback to JS click if normal click fails
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
             }
         } catch (TimeoutException e) {
@@ -129,94 +115,77 @@ public class HomePage {
 
 	@FindBy(xpath = "//button[contains(text(),'Sort By')]") 
     private WebElement sortbybutton;
-	
-	@FindBy(xpath = "//li//span[normalize-space(text())='Price: Low to High']") 
-    private WebElement lowtohigh;
+
 
 	public void clickSortBy() {
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-	    // Wait for overlay or loader to disappear
 	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'Aj') and contains(@style,'display')]")));
 
-	    // Wait for Sort By button to be clickable
 	    WebElement sortButton = wait.until(ExpectedConditions.elementToBeClickable(sortbybutton));
 
-	    // Scroll into view
 	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", sortButton);
 
 	    try {
 	        sortButton.click();
 	    } catch (ElementClickInterceptedException e) {
-	        // Fallback to JS click
+
 	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sortButton);
 	    }
 	}
 	
+
+
+	public void selectLowToHigh(int sheet, int row) throws IOException {
+		
+		String[] firstXpath = ExcelReader.getRowData(sheet, row); 
+		new WebDriverWait(driver, Duration.ofSeconds(15))
+        .until(ExpectedConditions.visibilityOf(LowToHigh));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", LowToHigh);
+		
+	}
 	
-   
-//	public void selectSortOption(String optionText) {
-//	    WebElement optionElement = new WebDriverWait(driver, Duration.ofSeconds(10))
-//	        .until(ExpectedConditions.elementToBeClickable(By.xpath("//li[text()='" + optionText + "']")));
-//	    optionElement.click();
+	public boolean verifysortby() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.urlContains("top-booked-tests"));
+            return verifyViewAll.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+//	public void selectTopDeals(int sheet,int row) throws IOException {
+//		String[] topDealsXpath = ExcelReader.getRowData(sheet, row);
+//		new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(topDeals));
+//		((JavascriptExecutor) driver).executeScript("arguments[0].click();", topDeals);
 //	}
+	
+	public void selectFiltersFromExcel(int sheetIndex, int rowIndex) throws IOException {
+	    // Read row data from Excel
+	    String[] filters = ExcelReader.getRowData(sheetIndex, rowIndex);
 
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
 
-//	public void selectSortOption(String optionText) {
-//	    optionText = optionText.trim(); // Normalize Excel value
-//	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-//
-//	    // ✅ Wait for option to be clickable
-//	    WebElement optionElement = wait.until(ExpectedConditions.elementToBeClickable(
-//	        By.xpath("//li[contains(text(),'" + optionText + "')]")));
-//
-//	    // ✅ Scroll and click
-//	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", optionElement);
-//	    optionElement.click();
-//	}
-//	
-	public boolean selectSortOptionFromExcel(int sheetNo, int rowNum) throws IOException {
-	    boolean actResult = true;
-	    try {
-	        // ✅ Read SortOption from Excel (column fixed as 0)
-	        String sortOption = ExcelReader.getCellData(sheetNo, rowNum, 0).trim();
-	        System.out.println("Sort Option from Excel: " + sortOption);
+	    for (String filterName : filters) {
+	        if (filterName != null && !filterName.trim().isEmpty()) {
+	            String xpath = "//label[normalize-space(text())='" + filterName.trim() + "']";
 
-	        // ✅ Wait for dropdown option to be clickable
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-	        WebElement optionElement = wait.until(ExpectedConditions.elementToBeClickable(
-	            By.xpath("//li//span[normalize-space(text())='" + sortOption + "']")));
-
-	        // ✅ Scroll into view
-	        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", optionElement);
-
-	        // ✅ Try normal click
-	        try {
-	            optionElement.click();
-	        } catch (ElementClickInterceptedException e) {
-	            // ✅ Fallback to JS click
-	            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", optionElement);
+	            try {
+	                WebElement labelElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+	                js.executeScript("arguments[0].scrollIntoView(true);", labelElement);
+	                js.executeScript("arguments[0].click();", labelElement);
+	                System.out.println("Clicked filter: " + filterName);
+	            } catch (TimeoutException e) {
+	                System.err.println("Filter not found or not clickable: " + filterName);
+	            }
 	        }
-
-	        // ✅ Optional Reporting
-	        // Reports.generateReport(driver, test, Status.PASS, "Clicked SortOption: " + sortOption);
-
-	    } catch (TimeoutException | ElementClickInterceptedException e) {
-	        actResult = false;
-	        System.out.println("Failed to click SortOption: " + e.getMessage());
-	        // Reports.generateReport(driver, test, Status.FAIL, "Failed to click SortOption: " + e.getMessage());
 	    }
-	    return actResult;
-	}}
+	}
+
 	
-//	public boolean verifylowtohigh() {
-//        try {
-//            new WebDriverWait(driver, Duration.ofSeconds(10))
-//                .until(ExpectedConditions.visibilityOf(lowtohigh));
-//            return lowtohigh.isDisplayed();
-//        } catch (TimeoutException e) {
-//            return false;
-//        }
-//    }
-//	
-//}
+	
+}
+
+
+		
