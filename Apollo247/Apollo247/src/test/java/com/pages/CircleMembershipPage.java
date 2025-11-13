@@ -1,8 +1,11 @@
 package com.pages;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,9 +13,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.parameters.ExcelReader;
+import com.parameters.PropertyReader;
+
 public class CircleMembershipPage {
 
     WebDriver driver;
+    private static WebDriverWait wait;
 
     // Locators moved to constants (no hardcoding in methods)
     private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
@@ -124,6 +131,8 @@ public class CircleMembershipPage {
 	        }
 	    }
 
+		
+
 //	    // ✅ Verify selected plan header
 //	    public WebElement getSelectedPlanHeader() {
 //	        return selectedPlanHeader;
@@ -134,69 +143,122 @@ public class CircleMembershipPage {
 //	    }
 	    
 	    
+	    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	    //+++++++++++++++++++++++++++++ third scenario ++++++++++++++++++++++++++++++++ 
 	    
-	    
-	    //private static final String LOGIN_TO_CONTINUE_BUTTON = "//button[contains(text(),'Login to Continue')]";
-	    private static final String LOGIN_TO_CONTINUE_BUTTON = "//span[text() = 'Login to continue']";
-	    //private static final String PHONE_NUMBER_INPUT = "mobileNumber"; // Assuming ID
-	    private static final String PHONE_NUMBER_INPUT = "/html/body/div[4]/div[2]/div/div[2]/div/div/div/form/div[1]/div/div/div[1]/input";
-	    private static final String CONTINUE_BUTTON = "input[name = 'mobileNumber']";
-	    private static final String VERIFY_BUTTON = "//button[contains(text(),'Verify')]";
-
-	    // WebElements
-	    @FindBy(xpath = LOGIN_TO_CONTINUE_BUTTON)
-	    private WebElement loginToContinueBtn;
-
-	    @FindBy(id = PHONE_NUMBER_INPUT)
-	    private WebElement phoneNumberInput;
-
-	    @FindBy(xpath = CONTINUE_BUTTON)
-	    private WebElement continueBtn;
-
-	    @FindBy(xpath = VERIFY_BUTTON)
-	    private WebElement verifyBtn;
-
-	    // ✅ Click Login to Continue
-	    public void clickLoginToContinue() {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	        wait.until(ExpectedConditions.elementToBeClickable(loginToContinueBtn)).click();
-	    }
-
-	    // ✅ Enter phone number (passed from step definition)
-	    public void enterPhoneNumber(String phoneNumber) {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	        wait.until(ExpectedConditions.visibilityOf(phoneNumberInput)).sendKeys(phoneNumber);
-	    }
-
-	    // ✅ Click Continue
-	    public void clickContinue() {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	        wait.until(ExpectedConditions.elementToBeClickable(continueBtn)).click();
-	    }
-
-	    // ✅ Wait for OTP entry (time passed from step definition)
-	    public void waitForOtpEntry(int waitTimeInSeconds) {
-	        try {
-	            System.out.println("Waiting " + waitTimeInSeconds + " seconds for manual OTP entry...");
-	            Thread.sleep(waitTimeInSeconds * 1000);
-	        } catch (InterruptedException e) {
-	            Thread.currentThread().interrupt();
-	        }
-	    }
-
-	    // ✅ Click Verify after OTP entered manually
-	    public void clickVerify() {
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	        wait.until(ExpectedConditions.elementToBeClickable(verifyBtn)).click();
-	    }
-
-//		public void enterPhoneNumber(String phoneNumber) {
-//			// TODO Auto-generated method stub
-//			
-//		}
+//	    @FindBy(xpath ="//*[@id=\"navHeader\"]/div[5]/div[2]/div[2]/div")
+//		WebElement loginBtn;
+//		@FindBy(xpath ="//*[@id=\"signUp-phoneNumber\"]")
+//		WebElement phoneNumber;
+//		@FindBy(xpath ="//*[@id=\"signUpSubmit\"]")
+//		WebElement continueBtn;
 //	    
+//	    private static final String LOGIN_TO_CONTINUE_BUTTON = "//span[text() = 'Login to continue']";
+//	   // private static final String PHONE_NUMBER_INPUT = "(//input)[1]";
+//	    //private static final String PHONE_NUMBER_INPUT = "//input[@name=\"mobileNumber']";
+//	    
+//	    private static final String PHONE_NUMBER_INPUT = "/html/body/div[4]/div[2]/div/div[2]/div/div/div/form/div[1]/div/div/div[1]/input";
+//	    @FindBy(xpath = LOGIN_TO_CONTINUE_BUTTON)
+//	    private WebElement loginToContinueBtn;
+//	    
+//	    @FindBy(xpath = PHONE_NUMBER_INPUT)
+//	    private WebElement phoneNumber;
+//	    
+//	    public void clickLoginToContinue() 
+//	    {
+//			// TODO Auto-generated method stub
+//	 
+//	 	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	 	        wait.until(ExpectedConditions.elementToBeClickable(loginToContinueBtn)).click();
+//	 	}
+//
+//     public void clickAndEnterPhoneNumber(int sheetIndex, int rowIndex) throws IOException {
+//    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    
+//    // Wait for input field to be clickable
+//    	 wait.until(ExpectedConditions.elementToBeClickable(phoneNumber)).click();
+//    
+//    // Read phone number from Excel
+//    	//String phone = ExcelReader.getCellData(sheetIndex, rowIndex, 0); // column 0 assumed
+//    
+//    // Enter phone number
+//    //phoneNumber.sendKeys(phone);
+//       }
+//
+//     public void enterPhoneNumber(String phone) throws IOException {
+//    	    Properties prop = PropertyReader.readProperty();
+//    	    String excelPath = prop.getProperty("number");
+//    	    //String phone = ExcelReader.getCellData(excelPath, excelPath, int1, rowIndex);
+//    	    wait.until(ExpectedConditions.elementToBeClickable(phoneNumber));
+//    	    phoneNumber.sendKeys(phone);
+//    	    phoneNumber.sendKeys(Keys.ENTER);
+//    	}
+//	//------------------------------------------------------
+//		public void enterPhoneNumber() throws IOException 
+//		{
+//			// TODO Auto-generated method stub
+//			String phone = ExcelReader.getCellData("login",0,0);
+//			wait.until(ExpectedConditions.visibilityOf(phoneNumber)).sendKeys(phone);
+//		}
+     
+//     public void enterPhoneNumber() throws IOException
+//     {
+//    	 
+//
+//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    wait.until(ExpectedConditions.visibilityOf(phoneNumber)).sendKeys(phone);
+//
+//     }
+
+	    
+	    //++++++++++++++++++++++++++++ 4th coupon SCENARIO ++++++++++++++++++++++++++
+	    
+
+	    //@FindBy(xpath = "/html/body/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[1]/div/div[1]")
+	    
+	 // Locator constants
+	    //private static final String APPLY_COUPON_BUTTON = "//button[contains(text(),'Apply Coupon')]";
+	    private static final String APPLY_COUPON_BUTTON = "/html/body/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[1]/div/div[1]";
+	    //private static final String COUPON_INPUT_FIELD = "/html/body/div[4]/div[2]/div/div[1]/h2/div[2]";
+	    private static final String COUPON_INPUT_FIELD = "//input[@placeholder='Enter Coupon Code']";
+	   // private static final String CANCEL_BUTTON = "//button[contains(text(),'Cancel')]";
+	    private static final String CANCEL_BUTTON = "/html/body/div[4]/div[2]/div/div[3]";
 	   
+	 
+	    @FindBy(xpath = APPLY_COUPON_BUTTON)
+	    private WebElement applyCouponBtn;
+	    
+	    @FindBy(xpath = COUPON_INPUT_FIELD)
+	    private WebElement couponInput;
+	    
+
+	    @FindBy(xpath = CANCEL_BUTTON)
+	    private WebElement cancelBtn;
+
+	    public void clickApplyCoupon() 
+	    {
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        wait.until(ExpectedConditions.elementToBeClickable(applyCouponBtn)).click();
+
+	        //wait.until(ExpectedConditions.elementToBeClickable(applyCouponBtn));
+	    }
+	    
+	    public void enterCouponCode(String code) 
+	    {
+	    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    	wait.until(ExpectedConditions.visibilityOf(couponInput));
+	    	couponInput.clear();
+	    	couponInput.sendKeys(code);
+        }
+	    
+
+     public void clickCancel() 
+     {
+    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	 wait.until(ExpectedConditions.elementToBeClickable(cancelBtn)).click();
+     }
+
+
 }
 
 

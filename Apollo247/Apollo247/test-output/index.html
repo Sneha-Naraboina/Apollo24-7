@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\narabo\AppData\Local\Temp\testng-eclipse--768850182\testng-customsuite.xml</span>
+                    <span>C:\Users\koyyad\AppData\Local\Temp\testng-eclipse--1482161331\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,7 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">2 methods,   2 passed</span>
+                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Default_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunnerTestNG" class="method navigator-link" hash-for-method="runScenario(&quot;Entering Coupons&quot;, &quot;Circle Membership Functionality&quot;)">runScenario("Entering Coupons", "Circle Membership Functionality")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,12 +117,12 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunnerTestNG" class="method navigator-link" hash-for-method="runScenario(&quot;Navigate to Lab Tests and apply Sort By option&quot;, &quot;Lab Tests Navigation&quot;)">runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation")</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunnerTestNG" class="method navigator-link" hash-for-method="runScenario(&quot;Navigate to Join Circle from CircleMembership&quot;, &quot;Circle Membership Functionality&quot;)">runScenario("Navigate to Join Circle from CircleMembership", "Circle Membership Functionality")</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunnerTestNG" class="method navigator-link" hash-for-method="runScenario(&quot;Navigate to Lab Tests and apply Sort By option&quot;, &quot;Lab Tests Navigation&quot;)">runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation")</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="com.runner.TestRunnerTestNG" class="method navigator-link" hash-for-method="runScenario(&quot;Clicking on Circle Membership opens the available Plans&quot;, &quot;Circle Membership Functionality&quot;)">runScenario("Clicking on Circle Membership opens the available Plans", "Circle Membership Functionality")</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -123,6 +137,29 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.runner.TestRunnerTestNG</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Entering Coupons&quot;, &quot;Circle Membership Functionality&quot;)">
+                  </a> <!-- runScenario("Entering Coupons", "Circle Membership Functionality") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Entering Coupons","Circle Membership Functionality")</span>
+                  <div class="stack-trace">java.lang.RuntimeException: Failed to enter coupon code from Excel
+	at com.stepDefinitionTestNG.Profile.the_user_enters_coupon_code_from(Profile.java:275)
+	at ✽.the user enters coupon code from 0(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:42)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-failed -->
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -131,20 +168,20 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;Navigate to Lab Tests and apply Sort By option&quot;, &quot;Lab Tests Navigation&quot;)">
-                  </a> <!-- runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation") -->
+                  <a name="runScenario(&quot;Navigate to Join Circle from CircleMembership&quot;, &quot;Circle Membership Functionality&quot;)">
+                  </a> <!-- runScenario("Navigate to Join Circle from CircleMembership", "Circle Membership Functionality") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("Navigate to Lab Tests and apply Sort By option","Lab Tests Navigation")</span>
+                  <span class="parameters">("Navigate to Join Circle from CircleMembership","Circle Membership Functionality")</span>
                   <em>
 (Runs Cucumber Scenarios)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="runScenario(&quot;Navigate to Lab Tests and apply Sort By option&quot;, &quot;Lab Tests Navigation&quot;)">
-                  </a> <!-- runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation") -->
+                  <a name="runScenario(&quot;Clicking on Circle Membership opens the available Plans&quot;, &quot;Circle Membership Functionality&quot;)">
+                  </a> <!-- runScenario("Clicking on Circle Membership opens the available Plans", "Circle Membership Functionality") -->
                   <span class="method-name">runScenario</span>
-                  <span class="parameters">("Navigate to Lab Tests and apply Sort By option","Lab Tests Navigation")</span>
+                  <span class="parameters">("Clicking on Circle Membership opens the available Plans","Circle Membership Functionality")</span>
                   <em>
 (Runs Cucumber Scenarios)                  </em>
                 </div> <!-- method-content -->
@@ -154,7 +191,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\narabo\AppData\Local\Temp\testng-eclipse--768850182\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\koyyad\AppData\Local\Temp\testng-eclipse--1482161331\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -211,20 +248,24 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(2);
+data.addRows(3);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'runScenario')
 data.setCell(0, 2, 'com.runner.TestRunnerTestNG')
-data.setCell(0, 3, 32307);
+data.setCell(0, 3, 11075);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'runScenario')
 data.setCell(1, 2, 'com.runner.TestRunnerTestNG')
-data.setCell(1, 3, 29756);
+data.setCell(1, 3, 9227);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'runScenario')
+data.setCell(2, 2, 'com.runner.TestRunnerTestNG')
+data.setCell(2, 3, 8755);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 29 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -252,20 +293,26 @@ return data;
             <div class="chronological-class">
               <div class="chronological-class-name">com.runner.TestRunnerTestNG</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
-                <span class="method-name">setUpClass(org.testng.TestRunner@45796b2a)</span>
+                <span class="method-name">setUpClass(org.testng.TestRunner@6ed16657)</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation")</span>
-                <span class="method-start">807 ms</span>
+                <span class="method-name">runScenario("Clicking on Circle Membership opens the available Plans", "Circle Membership Functionality")</span>
+                <span class="method-start">836 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <span class="method-name">runScenario("Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation")</span>
-                <span class="method-start">33118 ms</span>
+                <span class="method-name">runScenario("Navigate to Join Circle from CircleMembership", "Circle Membership Functionality")</span>
+                <span class="method-start">10067 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("Entering Coupons", "Circle Membership Functionality")</span>
+                <span class="method-start">18822 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDownClass</span>
-                <span class="method-start">62884 ms</span>
+                <span class="method-start">29905 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
