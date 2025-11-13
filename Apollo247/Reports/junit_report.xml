@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="92.364" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-13T17:29:12.235075500Z">
+<testcase classname="Shop by Category Functionality" name="User Landing on HomePage" time="18.296">
+<system-out><![CDATA[
+Given the user is on the Apollo 247 homepage................................passed
+When the user clicks on Health Monitors under Shop by Category..............passed
+Then the categories page should be displayed................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on HealthMonitors Page" time="21.674">
+<system-out><![CDATA[
+Given the user is on Health Monitors Page...................................passed
+When the user clicks on Apollo products.....................................passed
+And user clicks on personal care products...................................passed
+And user clicks on Baby care prodcuts.......................................passed
+Then user clicls on OTC products............................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on Nutritional Drinks and Supplements page" time="15.47">
+<system-out><![CDATA[
+Given the user is on Nutritional Drinks and Supplements page................passed
+When the user clicks on Nutritional Drinks and Supplements..................passed
+And the user clicks on Nutritional Drinks...................................passed
+And the user clicks on Sports Nutrition.....................................passed
+Then the user verifies the Sports Nutrition page is displayed...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.1" time="18.706">
+<system-out><![CDATA[
+Given the user is on Nutritional Drinks and Supplements page................passed
+When the user clicks on Nutritional Drinks and Supplements..................passed
+And the user clicks on Nutritional Drinks...................................passed
+And the user clicks on Sports Nutrition.....................................passed
+And the user clicks on sortBy dropdown......................................passed
+And user select SortOption from Excel 0 1...................................passed
+Then the user verifies the Sports Nutrition page is displayed...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.2" time="17.768">
+<system-out><![CDATA[
+Given the user is on Nutritional Drinks and Supplements page................passed
+When the user clicks on Nutritional Drinks and Supplements..................passed
+And the user clicks on Nutritional Drinks...................................passed
+And the user clicks on Sports Nutrition.....................................passed
+And the user clicks on sortBy dropdown......................................passed
+And user select SortOption from Excel 0 2...................................passed
+Then the user verifies the Sports Nutrition page is displayed...............passed
+]]></system-out>
+</testcase>
+</testsuite>

@@ -7,13 +7,6 @@ When the user clicks on Health Monitors under Shop by Category
 Then the categories page should be displayed
 
 
-#Scenario: User Landing on Health Monitors Page
-#Given the user is on Health Monitors Page
-#When the user clicks on Brands 
-#And user selects on ApolloPharmacy option
-#And user selects on Doctors choice option
-#Then user select multiple option at a time
-
 Scenario: user Landing on HealthMonitors Page
 Given the user is on Health Monitors Page
 When the user clicks on Apollo products
@@ -30,8 +23,22 @@ Then the user verifies the Sports Nutrition page is displayed
 
 
 
+Scenario Outline: user Landing on sports nutrition page
+Given the user is on Nutritional Drinks and Supplements page
+When the user clicks on Nutritional Drinks and Supplements
+And the user clicks on Nutritional Drinks
+And the user clicks on Sports Nutrition
+And the user clicks on sortBy dropdown
+And user select SortOption from Excel <sheet> <row>
+Then the user verifies the Sports Nutrition page is displayed
+
+Examples:
+| sheet | row |
+| 0     |  1 |
+| 0     |  2 |
 
   
+ 
 
 
 
