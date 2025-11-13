@@ -1,93 +1,77 @@
 package com.pages;
 
+import java.util.List;
 
-	import java.time.Duration;
-
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 
-	public class FindDoctorsPage extends BasePage {
+public class FindDoctorsPage extends BasePage {
+	
+	public static WebDriver webdriver;
+	
+	//1st Scenario
+    @FindBy(xpath = "//a[contains(text(),'Find Doctors')]")
+    WebElement findDoctorsButton;
+    //2nd Scenario
+    @FindBy(xpath = "//h2[contains(text(),'Browse by Specialty')]")
+    WebElement browseBySpecialtySection;
+    //2nd Scenario
+    @FindBy(xpath = "//div[@class='specialty-list']//a")
+    List<WebElement> specialtiesList;
+    //1st Scenario
+    @FindBy(xpath = "//input[@id='search-bar' or @placeholder='Search doctors, clinics, hospitals']")
+    WebElement searchBar;
+    //2nd Scenario
+    @FindBy(xpath = "//*[@id=\"mainContainerCT\"]/div[1]/div[3]/div/div/div[2]/a")
+    WebElement dermatologyOption;
+    
+    
+    public FindDoctorsPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+    public void clickDermatology() {
 
-	    WebDriver driver;
-	    WebDriverWait wait;
-	    ConsultPage consultpage;
+    	 waitUntilClickable(dermatologyOption, 10);
+    	    dermatologyOption.click();
 
-	    public FindDoctorsPage(WebDriver driver) {
-	        super(driver);
-	        this.driver = driver;
-	        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    }
-
-	    @FindBy(how = How.XPATH, using = "//input[@placeholder='Search Doctors, Specialities, Conditions etc.']")
-	    WebElement searchBar;
-
-
-	    @FindBy(how = How.XPATH, using = "/html/body/main/div/div[1]/div[5]/div/div/div[2]/a/p")
-	    WebElement derma;
-	    
-	    @FindBy(how = How.XPATH,using="/html/body/main/header/div/div[1]/div[3]/div/div/div[1]/div/div[3]/h2")
-	    WebElement errormsg;
-	    
-	    @FindBy(how = How.XPATH, using = "/html/body/main/div/div[1]/div[3]/div/div/div[2]/a/p")
-	    WebElement noLogderma;
-
-	    public void clickSearchBar() {
-	        wait.until(ExpectedConditions.visibilityOf(searchBar));
-	        searchBar.click();
-	    }
-
-	    public void enterSearchQuery(String doctorName) {
-	        wait.until(ExpectedConditions.visibilityOf(searchBar));
-	        searchBar.click();
-	        searchBar.clear();
-	        searchBar.sendKeys(doctorName);
-	    }
-	    
-
-	public boolean isDoctorSearchVisible() {
-	    try {
-	       wait.until(ExpectedConditions.visibilityOf(searchBar));
-	        return searchBar.isDisplayed();
-	      } catch (TimeoutException e) {
-	      return false;
-	      }
-	}
+    }
 
 
-	public boolean isNoResultsMessageDisplayed() {
-	     try {
-	        wait.until(ExpectedConditions.visibilityOf(errormsg));
-	        return errormsg.isDisplayed();
-	     } catch (TimeoutException e) {
-	       return false;
-	       }
-	}
-	    
-	    public void scroll() {
-	    	JavascriptExecutor js;
-	    	js=(JavascriptExecutor) webdriver;
-	        js.executeScript("window.scrollBy(0,250);");
-	    }
+    public boolean isBrowseBySpecialtyVisible() {
+        waitUntilVisible(browseBySpecialtySection, 20);
+        return browseBySpecialtySection.isDisplayed();
+    }
 
-	    public ConsultPage clickDerma() throws InterruptedException {
-	    	Thread.sleep(5000);
-	        derma.click();
-	        consultpage = new ConsultPage(driver);
-	        return consultpage;
-	    }
-	    
-	    public ConsultPage noLogclickDerma() throws InterruptedException {
-	    	Thread.sleep(5000);
-	        noLogderma.click();
-	        consultpage = new ConsultPage(driver);
-	        return consultpage;
-	    }
-	}
+    public boolean isSearchBarVisible() {
+        waitUntilVisible(searchBar, 20);
+        return searchBar.isDisplayed();
+    }
 
-
+    public boolean isSpecialtyPresent(String specialtyName) {
+        return specialtiesList.stream()
+                .anyMatch(s -> s.getText().equalsIgnoreCase(specialtyName));
+    }
+//
+//    public void clickSpecialty(String specialtyName) {
+//        for (WebElement specialty : specialtiesList) {
+//            if (specialty.getText().equalsIgnoreCase(specialtyName)) {
+//                waitUntilClickable(specialty, 10);
+//                specialty.click();
+//                break;
+//            }
+//        }
+//    }
+    //2nd Scenario
+    public boolean isOnSpecialtyPage(String specialtyName) {
+        return webdriver.getCurrentUrl().toLowerCase().contains(specialtyName.toLowerCase());
+    }
+    
+    
+    //3rd scenario=========================================================================
+    
+    
+    
+}
