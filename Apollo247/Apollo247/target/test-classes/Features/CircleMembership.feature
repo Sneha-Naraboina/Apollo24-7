@@ -15,16 +15,18 @@ Scenario: Navigate to Join Circle from CircleMembership
     
 
 
+
 Scenario: Complete login and prepare for payment after selecting plan
     Given the user is on the Apollo247 homepage
     When the user clicked on Circle Membership
     And the user clicked on Join Circle
     And join circle page is visible
     And the user clicks on Login to Continue
-    And the user enters phone number from properties
+    And the user enters phone number
     And the user clicks on Continue
-    And wait for OTP entry 
+    And wait for OTP entry
     And the user clicks on Verify after entering OTP manually
-    Then user is loggedin
+    Then user is logged in
+
 
 
