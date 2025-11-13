@@ -1,5 +1,11 @@
 package com.stepDefinitionTestNG;
 
+import static org.testng.Assert.assertTrue;
+
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+
 //import java.io.IOException;
 //import java.time.Duration;
 //
@@ -102,13 +108,17 @@ package com.stepDefinitionTestNG;
 //}	
 
 
-import java.io.IOException;
+//import java.io.IOException;
 
 import org.testng.Assert;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.pages.HomePage;
 import com.pages.HomePage2;
+import com.pages.HomePage3;
 import com.parameters.ExcelReader;
+import com.parameters.ExcelReader1;
+import com.parameters.PropertyReader;
 import com.setup.BaseSteps;
 
 import io.cucumber.java.en.And;
@@ -116,10 +126,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
 public class Profile extends BaseSteps {
+	
+	WebDriver driver=BaseSteps.driver;
+	ExtentTest test=Hooks.test;
+	
+	Properties prop = PropertyReader.readProperty();
 
     HomePage homePage = new HomePage(driver);
     HomePage2 homePage2 = new HomePage2(driver);
+    HomePage3 homePage3 = new HomePage3(driver);
+    
+     
 
     @Given("user has to be on Home page")
     public void user_has_to_be_on_home_page() {
@@ -137,8 +156,8 @@ public class Profile extends BaseSteps {
     }
 
     @And("Enter valid medicine name")
-    public void enter_valid_medicine_name() throws IOException {
-        String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/TestInput.xlsx";
+    public void enter_valid_medicine_name()  {
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/invalid.xlsx";
         ExcelReader reader = new ExcelReader(filePath);
         String searchValue = reader.getCellData(0, 0, 0);
         System.out.println("Searching for: " + searchValue);
@@ -167,7 +186,7 @@ public class Profile extends BaseSteps {
     public void user_be_on_buy_medicine_page() {
     	//homePage2.goToBuyMedicinePage();
     	//driver.get(config.getProperty("buyMedicineUrl"));
-    	HomePage2.clickBuyMedicines();
+    	//HomePage3.clickBuyMedicines1();
     	
         
     }
@@ -191,6 +210,84 @@ public class Profile extends BaseSteps {
 
     }
 
+    
+   //third scenario
+    @Given("the user is on the buy medicine page")
+    public void the_user_is_on_the_buy_medicine_page() {
+    	homePage3 = new HomePage3(driver);
+    	homePage3.clickBuyMedicines1();
+    	//homePage3.clickSearchBar1();
+        
+    }
+
+
+    
+    
+//    @When("the user enters medicine name from sheet {int} and row {int} in the search box")
+//    public void the_user_enters_medicine_name_from_sheet_and_row_in_the_search_box(Integer int1, Integer int2) throws InterruptedException {
+//    	String excelPathSO = prop.getProperty("ExcelPath");
+//    	String Medicine = ExcelReader1.getName(excelPathSO, int1, int2);
+//    	Thread.sleep(2000);
+//    	Assert.assertNotNull(Medicine, "Medicine not found at sheet " + int1 + ", row " + int2);
+//    	
+//    }
+//
+//        
+//    
+//
+//    @And("clicks on the search button")
+//    public void clicks_on_the_search_button() {
+//    	//wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
+//    	
+//        
+//    }
+//
+//    @Then("the system should display results")
+//    public void the_system_should_display_results() {
+//    	
+//    	 homePage3.enterMedicine("Medicine");
+//        
+//    }
+    @When("the user clicks on search box")
+    public void the_user_clicks_on_search_box() {
+    	homePage3.clickSearchBar1();
+    	
+        
+    }
+
+    @When("the user enters medicine name from sheet {int} and row {int} in the search box")
+    public void the_user_enters_medicine_name_from_sheet_and_row_in_the_search_box(Integer int1, Integer int2) {
+//    	String excelPathSO = prop.getProperty("ExcelPath");
+//    	String Medicine = ExcelReader1.getName(excelPathSO, int1, int2);
+//    	
+//    	Assert.assertNotNull(Medicine, "Medicine not found at sheet " + int1 + ", row " + int2);
+    	//@When("the user enters medicine name from sheet {int} and row {int} in the search box")
+    	//public void the_user_enters_medicine_name_from_sheet_and_row_in_the_search_box(Integer sheetIndex, Integer rowIndex) {
+    	    String excelPathSO = prop.getProperty("ExcelPath");
+    	    String medicineName = ExcelReader1.getName(excelPathSO, int1, int2);
+
+    	    Assert.assertNotNull(medicineName, "Medicine not found at sheet " + int1 + ", row " + int2);
+
+    	    homePage3.enterMedicine(medicineName);  // ✅ Pass actual value
+    	    System.out.println("Entered medicine: " + medicineName);
+    	}
+        
+    
+
+    @Then("the system should display results")
+    public void the_system_should_display_results() {
+
+////    	String actual = searchInput.getAttribute("value");
+////    	String expected = medicineName; // From Excel
+//    	Assert.assertEquals(homePage.actual, expected, "Search box value does not match expected medicine!");
+	
+    	
+    	
+    	
+    	
+    	
+
+    }       
 }
 
 
