@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.pages.HomePage;
+
 import com.setup.BaseSteps;
 
 import io.cucumber.java.en.Given;
@@ -14,7 +15,7 @@ import io.cucumber.java.en.When;
 
 public class Profile extends BaseSteps {
 	WebDriver driver;
-	HomePage homePage;
+	
 	
 	@Given("user has to be on Home page")
 	public void user_has_to_be_on_home_page() {
@@ -26,9 +27,7 @@ public class Profile extends BaseSteps {
 //        driver.get("https://www.apollo247.com/");
 //        driver.findElement(By.linkText("Buy Medicines")).click();
 			 
-		 	homePage = new HomePage(driver);
-		 	launchBrowser();
-
+		 	
 
 	}
 
