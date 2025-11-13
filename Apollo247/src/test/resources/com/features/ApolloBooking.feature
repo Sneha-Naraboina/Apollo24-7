@@ -1,29 +1,28 @@
-Feature: Apollo 24/7 - Consultation Booking Automation
+Feature: Validate Find Doctors functionality on Apollo Pharmacy website
+  @TC_01
+  Scenario: Verify Find Doctors page and search bar visibility
+    Given User opens Apollo Pharmacy homepage
+    When User clicks on Find Doctors
+    Then Validate the title of the webpage
 
-  Background: 
-    Given User open Apollo Pharmacy website
-		Then User login using mobile number and OTP
-		|Book3.xlsx|
-		When User click on Find Doctors
-		Then Doctors module should be displayed
-		
-  @InvalidSearch
-  Scenario Outline: Invalid Doctor search
-   When User search on search bar
-   Then search for invalid Doctor names <sheetno> and <rowno>
-   Then No results found message should be displayed
-   
-   Examples:
-   |sheetno|rowno|
-   |   1   |  0  |
-   |   1   |  1  |
-   |   1   |  2  |
+  @TC_02
+  Scenario: Validate Browse by Specialty and navigate to Dermatology doctors
+    Given User opens Apollo Pharmacy homepage
+    When User clicks on Find Doctors
+    Then Validate that Browse by Specialty option is displayed
+    And User clicks on Dermatology
+    Then User should navigate to Dermatologists page
+    
+   @TC_03 
+    Scenario: Book an online consultation
+     Given the user is on the Apollo Pharmacy homepage
+     When the user applies filters to find doctors
+     And selects a doctor from the filtered list
+     And clicks on Online Consult
+     And chooses a date and time slot
+     And selects a patient or member from the list
+     And clicks on Proceed
+     Then the user should be redirected to the payment page
+
    
 
-  @BrowseBySpecialty
-  Scenario: Browse doctors by specialty
-    When User click Dermatologist
-    Then User navigates to Dermatologists
-    Then Doctors should be displayed
- 
- 
