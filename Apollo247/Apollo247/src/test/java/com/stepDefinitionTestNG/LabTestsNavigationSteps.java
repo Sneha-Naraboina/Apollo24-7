@@ -94,6 +94,7 @@ public class LabTestsNavigationSteps extends BasePage {
 
     	@Then("the filtered list of lab tests should be displayed")
     	public void the_filtered_list_of_lab_tests_should_be_displayed() {
+    		Assert.assertTrue(homePage.verifycheck(), "Displays topbooked tests after applying filters");
     	    
     	}
     	

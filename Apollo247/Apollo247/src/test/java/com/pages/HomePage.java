@@ -181,7 +181,17 @@ public class HomePage {
 	            }
 	        }
 	    }
-	}
+	}public boolean verifycheck() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.urlContains("top-booked-tests"));
+            return verifyViewAll.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+	
+	
 
 	
 	
