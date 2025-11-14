@@ -21,8 +21,6 @@ And the user clicks on Nutritional Drinks
 And the user clicks on Sports Nutrition
 Then the user verifies the Sports Nutrition page is displayed
 
-
-
 Scenario Outline: user Landing on sports nutrition page
 Given the user is on Nutritional Drinks and Supplements page
 When the user clicks on Nutritional Drinks and Supplements
@@ -34,10 +32,22 @@ Then the user verifies the Sports Nutrition page is displayed
 
 Examples:
 | sheet | row |
+| 0     |  0 |
 | 0     |  1 |
-| 0     |  2 |
 
-  
+Scenario Outline: user Landing on Home Essentials page
+
+Given the user clicks on search bar
+When the user enters inputs from Excel <sheet> <row>
+Then the user Clicks on Home Essentials Page
+
+Examples:
+| sheet | row |
+| 1     |  0 |
+| 1     |  1 |
+
+
+
  
 
 

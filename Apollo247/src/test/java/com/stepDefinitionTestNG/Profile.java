@@ -266,6 +266,64 @@ public class Profile {
 
     
 }
+    
+//fifth scenario
+        
+//        @Given("the user clicks on Home essentials")
+//        public void the_user_clicks_on_home_essentials() {
+//          // HomePage homePage = new HomePage();
+//        	homePage = new HomePage();
+//            homePage.clickHomeEssentials();
+//        }
+
+        @Given("the user clicks on search bar")
+        public void the_user_clicks_on_search_bar() {
+        	homePage = new HomePage();
+            homePage.clickSearchBar();
+        }
+
+        @When("the user enters inputs from Excel {int} {int}")
+        public void the_user_enters_inputs_from_excel(Integer sheet, Integer row) throws IOException {
+            homePage.enterSearchInputsFromExcel(sheet, row);
+        }
+//        @Then("the user verifies the savlon page is displayed")
+//        public void the_user_verifies_the_savlon_page_is_displayed() {
+//            homePage = new HomePage();
+//            homePage.assertSavlonSearchPageDisplayed();
+//        }
+        @Then("the user Clicks on Home Essentials Page")
+        public void the_user_clicks_on_home_essentials_page() {
+            homePage = new HomePage();
+            homePage.clickHomeEssentials();
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

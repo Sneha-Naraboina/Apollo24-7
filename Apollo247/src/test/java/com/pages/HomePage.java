@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -82,8 +83,22 @@ public class HomePage {
 
     @FindBy(xpath = "//*[@id=\"simple-menu\"]/div[1]")
     public List<WebElement> sortOptions;
+//fifth scenario //  Search bar and results
+ 
+//    @FindBy(xpath = "/html/body/div[1]/header/div/div/div/div[2]/div")
+//    public WebElement searchBar;
+    
+//    @FindBy(xpath = "//input[@placeholder='Search for Medicines and Health Products']")
+//    public WebElement searchInput;
+    
+    @FindBy(xpath = "/html/body/div[1]/header/div/div/div/div[2]/div") // 
+    public WebElement searchBar;
 
-
+    @FindBy(xpath = "//*[@id=\"searchProduct\"]")
+    public WebElement searchInput;
+    
+    @FindBy(xpath = "//a[contains(@href,'home-essentials')]") // Update this XPath based on actual DOM
+    public WebElement homeEssentialsLink;
 
 
 
@@ -321,15 +336,89 @@ public void selectSortOption(String optionText) {
         }
     }
 }
+
+
+//fifth scenario
+
+
+//=========
+
+
+//public void clickSearchBar() {
+//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    wait.until(ExpectedConditions.elementToBeClickable(searchBar));
+//    searchBar.click();
+//    System.out.println("Clicked on search bar.");
+//}
+
+public void clickSearchBar() {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    try {
+        wait.until(ExpectedConditions.elementToBeClickable(searchBar));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", searchBar);
+        searchBar.click();
+        System.out.println("Clicked on search bar container.");
+    } catch (Exception e) {
+        System.out.println("Fallback: clicking search bar via JS.");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchBar);
+    }
 }
 
+//=========below i got
+// public void enterSearchInput(String term) {
+//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//    wait.until(ExpectedConditions.visibilityOf(searchInput));
+//    searchInput.clear();
+//    searchInput.sendKeys(term.trim(), Keys.ENTER);
+//    System.out.println("Entered search term: " + term);
+//   // waitForSearchResults();
+//}=========above i got
+
+public void enterSearchInput(String term) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    wait.until(ExpectedConditions.visibilityOf(searchInput));
+    searchInput.sendKeys(Keys.CONTROL + "a");
+    searchInput.sendKeys(Keys.DELETE);
+    searchInput.sendKeys(term.trim(), Keys.ENTER);
+    System.out.println("Entered search term: " + term);
+}
+  public void enterSearchInputsFromExcel(int sheet, int row) throws IOException {
+    String[] searchTerms = ExcelReader.getRowData(sheet, row);
+    for (String term : searchTerms) {
+        if (!term.trim().isEmpty()) {
+            enterSearchInput(term);
+        }
+    }
+  }
 
 
 
-
-	
-
-
+//public void assertSavlonSearchPageDisplayed() {
+//    String expectedUrl = PropertyReader.getProperty("savlonSearch.expectedUrl");
+//    String actualUrl = driver.getCurrentUrl().trim();
+//
+//    if (expectedUrl == null || expectedUrl.isEmpty()) {
+//        throw new RuntimeException("Missing or empty key: savlonSearch.expectedUrl in Profile.properties");
+//    }
+//
+//    expectedUrl = expectedUrl.trim();
+//    Assert.assertEquals(actualUrl, expectedUrl, "Savlon page URL mismatch.");
+//    System.out.println("Savlon search page is displayed successfully.");
+//}
+//	
+//}
+  public void clickHomeEssentials() {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    wait.until(ExpectedConditions.elementToBeClickable(homeEssentialsLink));
+	    try {
+	        homeEssentialsLink.click();
+	        System.out.println("Clicked on Home Essentials page.");
+	    } catch (ElementClickInterceptedException e) {
+	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", homeEssentialsLink);
+	        System.out.println("Clicked on Home Essentials using JS fallback.");
+	    }
+	}
+}
 
 
 
