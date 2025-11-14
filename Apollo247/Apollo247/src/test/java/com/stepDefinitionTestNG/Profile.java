@@ -2,6 +2,7 @@ package com.stepDefinitionTestNG;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -257,7 +258,7 @@ import io.cucumber.java.en.When;
 
 		try {
         // Read excel path from properties
-        String excelPath = PropertyReader.get("excelPath");
+        String excelPath = PropertyReader.get("excel_Path");
 
         // Load Excel
         ExcelReader.loadExcel(excelPath);
@@ -284,12 +285,122 @@ import io.cucumber.java.en.When;
 //		    //throw new io.cucumber.java.PendingException();
 			 circlePage.clickCancel();
 		}
+		
+		
+		//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//++++++++++++++++++++++++++++++++++++  TERMS SCENARIO +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		
 
+		@Given("the user is on the Apollo247 homepage4")
+		public void the_user_is_on_the_apollo247_homepage4() 
+		{
+			// Write code here that turns the phrase above into concrete actions
+			// throw new io.cucumber.java.PendingException();
+			BaseSteps.launchBrowser();
+	        circlePage = new CircleMembershipPage(BaseSteps.driver);
+	        BaseSteps.driver.get(PropertyReader.readProperty().getProperty("sourceUrl"));
+		}
 
+		@When("the user clicks on Circle Membership4")
+		public void the_user_clicks_on_circle_membership4() 
+		{
+			// Write code here that turns the phrase above into concrete actions
+			// throw new io.cucumber.java.PendingException();
+			circlePage.clickCircleMembership();
+		}
 
+		@When("user clicks on the Join Circle4")
+		public void user_clicks_on_the_join_circle4() {
+			// Write code here that turns the phrase above into concrete actions
+			// throw new io.cucumber.java.PendingException();
+			circlePage.clickJoinCircle();
+		}
+
+		@When("the user clicks on Login to Continue")
+		public void the_user_clicks_on_login_to_continue() {
+			// Write code here that turns the phrase above into concrete actions
+			// throw new io.cucumber.java.PendingException();
+			 circlePage.clickLoginToContinue();
+		}
+
+		@When("user clicks on the terms")
+		public void user_clicks_on_the_terms() 
+		{
+			// Write code here that turns the phrase above into concrete actions
+			// throw new io.cucumber.java.PendingException();
+			circlePage.clickTerms();
+
+			// Switch to the newly opened tab
+			    for (String handle : driver.getWindowHandles()) {
+			        driver.switchTo().window(handle);
+			    }
+
+			
+		}
+
+		@Then("terms and Conditions page should be displayed")
+		public void terms_and_conditions_page_should_be_displayed() //throws TimeoutException 
+		{
+			boolean verify = circlePage.checkverify();
+			Assert.assertTrue(verify, "Terms and Conditions page is NOT displayed");
 	
-	
-}
+		}
+		
+		//+++++++++++++++++++++++++++++++++++++++++ Buy Insurance +++++++++++++++++++++++++++++++++++++++++++++++++
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		
+		@Given("the user is on the Apollo24 homepage5")
+		public void the_user_is_on_the_apollo24_homepage5() {
+		    // Write code here that turns the phrase above into concrete actions
+		    // throw new io.cucumber.java.PendingException();
+			 BaseSteps.launchBrowser();
+		     circlePage = new CircleMembershipPage(BaseSteps.driver);
+		     BaseSteps.driver.get(PropertyReader.readProperty().getProperty("sourceUrl"));
+			
+		}
+
+		@When("the user clicks on Buy Insurance")
+		public void the_user_clicks_on_buy_insurance() {
+		    // Write code here that turns the phrase above into concrete actions
+		    // throw new io.cucumber.java.PendingException();
+			 circlePage.clickBuyInsurance();
+			
+		}
+
+		@When("user navigates to insurance page")
+		public void user_navigates_to_insurance_page() {
+		    // Write code here that turns the phrase above into concrete actions
+		    //throw new io.cucumber.java.PendingException();
+		}
+
+		@When("the user enters the pincode from sheet {int} and row {int}")
+		public void the_user_enters_the_pincode_from_sheet_and_row(Integer int1, Integer int2) 
+		{
+		    // Write code here that turns the phrase above into concrete actions
+		    //throw new io.cucumber.java.PendingException();
+			try {
+		        String excelPath = PropertyReader.get("excel_Path");
+		        ExcelReader.loadExcel(excelPath);
+		        String pincode = ExcelReader.getCellDataBySheetIndex(int1 - 1, int2, 0);
+		        Thread.sleep(6000); //wait for 6 secs before interacting
+		        circlePage.enterPincode(pincode);
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        throw new RuntimeException("Failed to enter pincode from Excel");
+		    }
+
+			
+		}
+
+		@Then("user clicks on submit")
+		public void user_clicks_on_submit() {
+		    // Write code here that turns the phrase above into concrete actions
+		    //throw new io.cucumber.java.PendingException();
+		}
+
+	}
 	
 
 

@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>9/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>4/2/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Nov 14 17:02:57 IST 2025</td>
+<td>Started on:</td><td>Fri Nov 14 22:40:29 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>358 seconds (358266 ms)</td>
+<tr><td>Total time:</td><td>77 seconds (77639 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,39 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "To enter pincode", "Circle Membership Functionality"</td>
+<td><div><pre>java.lang.RuntimeException: Failed to enter pincode from Excel
+	at com.stepDefinitionTestNG.Profile.the_user_enters_the_pincode_from_sheet_and_row(Profile.java:391)
+	at ✽.the user enters the pincode from sheet 1 and row 0(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:65)
+</pre></div><a href='#' onClick='toggleBox("stack-trace216084411", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace216084411'><pre>java.lang.RuntimeException: Failed to enter pincode from Excel
+	at com.stepDefinitionTestNG.Profile.the_user_enters_the_pincode_from_sheet_and_row(Profile.java:391)
+	at ✽.the user enters the pincode from sheet 1 and row 0(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:65)
+</pre></div></td>
+<td>27</td>
+<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
+<tr>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "To enter pincode", "Circle Membership Functionality"</td>
+<td><div><pre>java.lang.RuntimeException: Failed to enter pincode from Excel
+	at com.stepDefinitionTestNG.Profile.the_user_enters_the_pincode_from_sheet_and_row(Profile.java:391)
+	at ✽.the user enters the pincode from sheet 1 and row 1(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:65)
+</pre></div><a href='#' onClick='toggleBox("stack-trace472479895", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace472479895'><pre>java.lang.RuntimeException: Failed to enter pincode from Excel
+	at com.stepDefinitionTestNG.Profile.the_user_enters_the_pincode_from_sheet_and_row(Profile.java:391)
+	at ✽.the user enters the pincode from sheet 1 and row 1(file:///C:/Users/koyyad/eclipse-workspace/Apollo247/Apollo247/src/test/resources/Features/CircleMembership.feature:65)
+</pre></div></td>
+<td>12</td>
+<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -76,49 +109,24 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Add a test to the cart and verify cart count", "Lab Tests Navigation"</td>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Clicking on Circle Membership opens the available Plans", "Circle Membership Functionality"</td>
 <td></td>
-<td>27</td>
+<td>8</td>
 <td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
 <tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and apply TopDeals and CBC Tests filters", "Lab Tests Navigation"</td>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Join Circle from CircleMembership", "Circle Membership Functionality"</td>
+<td></td>
+<td>8</td>
+<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
+<tr>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Entering Coupons", "Circle Membership Functionality"</td>
 <td></td>
 <td>10</td>
 <td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
 <tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate  to Lab Tests page", "Lab Tests Navigation"</td>
+<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "To view terms and Conditions", "Circle Membership Functionality"</td>
 <td></td>
-<td>12</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Add a test to the cart and verify cart count", "Lab Tests Navigation"</td>
-<td></td>
-<td>11</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and search for test", "Lab Tests Navigation"</td>
-<td></td>
-<td>104</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and apply TopDeals and CBC Tests filters", "Lab Tests Navigation"</td>
-<td></td>
-<td>11</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation"</td>
-<td></td>
-<td>37</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and apply Sort By option", "Lab Tests Navigation"</td>
-<td></td>
-<td>38</td>
-<td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
-<tr>
-<td title='com.runner.TestRunnerTestNG.runScenario()'><b>runScenario</b><br>Test class: com.runner.TestRunnerTestNG<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Navigate to Lab Tests and search for test", "Lab Tests Navigation"</td>
-<td></td>
-<td>103</td>
+<td>10</td>
 <td>com.runner.TestRunnerTestNG@7e9131d5</td></tr>
 </table><p>
 </body>
