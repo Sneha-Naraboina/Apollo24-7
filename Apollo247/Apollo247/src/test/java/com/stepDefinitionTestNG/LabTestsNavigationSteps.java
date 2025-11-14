@@ -63,6 +63,7 @@ public class LabTestsNavigationSteps extends BasePage {
     		
     	@When("I click on the Sort By dropdown")
     	public void i_click_on_the_sort_by_dropdown() {
+    		homePage.clickclose();
     	    homePage.clickSortBy();
     	}
 
@@ -98,7 +99,46 @@ public class LabTestsNavigationSteps extends BasePage {
     	    
     	}
     	
-    	
+    	@Then("click on search")
+    	public void click_on_search() throws InterruptedException {
+    		homePage.clickclose();
+    	    homePage.clickSearchBox();
+    	    
+    	}
+
+    	@Then("Enter the Test from {int} and {int} in lab test for search")
+    	public void enter_the_test_from_and_in_lab_test_for_search(Integer sheet, Integer row) throws IOException {
+    		String[] testData = ExcelReader.getRowData(sheet, row);
+    		 homePage.enterTest(testData);
+    		 homePage.clickclose();
+    	    
+    	}
+
+    	@Then("click Entered Test in search")
+    	public void click_entered_test_in_search() throws InterruptedException {
+    		homePage.clickEnter();
+    		
+    	}
+
+    	@Then("verify Test results for SearchBox")
+    	public void verify_test_results_for_search_box() {
+    		
+    		Assert.assertTrue(homePage.verifyTests(), "Displays Search Results!");
+    		homePage.clickclose();
+    	}
+
+    	@Then("click on View Details")
+    	public void click_on_view_details() throws InterruptedException {
+    		//homePage.clickclose();
+    		homePage.clickViewDetails();
+    		
+    	    
+    	}
+
+    	@Then("verify the Cart Details")
+    	public void verify_the_cart_details() {
+    		Assert.assertTrue(homePage.verifyViewDetails(), "Displays Search Results!");
+    	}
     	
     	
     	
