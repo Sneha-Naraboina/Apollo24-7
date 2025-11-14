@@ -35,7 +35,7 @@ public class HomePage2 {
 
     // PageFactory element locators
     @FindBy(xpath = "//a[text()='Buy Medicines']")
-    private static WebElement buyMedicinesLink;
+    private static  WebElement buyMedicinesLink;
 
     @FindBy(xpath = "//*[@id='Browse by Health Conditions Web']/div[2]/div[1]/div/a/div[2]/h3")
     private WebElement diabetesCare;
