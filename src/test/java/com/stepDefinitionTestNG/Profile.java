@@ -4,112 +4,9 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-//import java.io.IOException;
-//import java.time.Duration;
-//
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.Keys;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.Assert;
-//
-//import com.pages.HomePage;
-//import com.parameters.ExcelReader;
-//import com.setup.BaseSteps;
-//
-//import io.cucumber.java.en.And;
-//import io.cucumber.java.en.Given;
-//import io.cucumber.java.en.Then;
-//import io.cucumber.java.en.When;
-//
-//public class Profile extends BaseSteps {
-//	HomePage homePage = new HomePage(driver);
-//	
-//
-//
-//	@Given("user has to be on Home page")
-//	public void user_has_to_be_on_home_page() {	
-//		String expectedTitle = "Apollo 247";
-//		String actualTitle = driver.getTitle();
-//	    Assert.assertEquals(actualTitle.contains("Apollo 247"), "Home page is NOT loaded!");
-//	    System.out.println(" Home Page Loaded Successfully");	
-//		 	
-//	}
-//
-//	@When("Navigate to Buy Medicine")
-//	public void navigate_to_buy_medicine() {
-//	    // Write code here that turns the phrase above into concrete actions
-//		driver.findElement(By.xpath("//a[text()=\"Buy Medicines\"]")).click();
-//		homePage.clickBuyMedicines();
-//		
-//		
-//	}
-//
-//	@And("Navigate to Searchbar")
-//	public void navigate_to_searchbar() {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    //throw new io.cucumber.java.PendingException();
-//		driver.findElement(By.xpath("//div[@data-placeholder=\"Search Medicines\"]")).click();
-//		homePage.clickSearchBar();
-////		
-//		
-//	}
-//
-//	@And("Enter valid medicine name")
-//	public void enter_valid_medicine_name() throws IOException {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    //throw new io.cucumber.java.PendingException();
-//		String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/TestInput.xlsx";
-//		 
-//	      // Create ExcelReader object with file path
-//	      ExcelReader reader = new ExcelReader(filePath);
-//	 
-//	      // Read value from Excel (Sheet 0, Row 0, Column 0)
-//	      String searchValue = reader.getCellData(0, 0, 0);
-//	      System.out.println("Searching for: " + searchValue);
-//	 
-//	      // Locate search bar and enter value
-//	      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//	      WebElement searchBar = wait.until(ExpectedConditions.presenceOfElementLocated(
-//	          By.xpath("//*[@id=\"searchProduct\"]")
-//	        //input[@type='search' or @placeholder='Search']
-//	          
-//	      ));
-//	 
-//	      searchBar.clear();
-//	      searchBar.sendKeys(searchValue);
-//	      searchBar.sendKeys(Keys.ENTER);
-//	      
-//		
-//	}
-//
-//	@And("Click search")
-//	public void click_search() {
-//	   
-//		
-//
-//	}
-//
-//	@Then("search related products should be displayed")
-//	public void search_related_products_should_be_displayed() {
-//	    
-//		
-//		
-//		
-//		
-//		
-//			
-//
-//	}
-//	
-//}	
-
-
-//import java.io.IOException;
-
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -142,6 +39,7 @@ public class Profile extends BaseSteps {
 
     @Given("user has to be on Home page")
     public void user_has_to_be_on_home_page() {
+    	
         homePage.validateHomePageTitle("Apollo 247");
     }
 
@@ -157,11 +55,12 @@ public class Profile extends BaseSteps {
 
     @And("Enter valid medicine name")
     public void enter_valid_medicine_name()  {
-        String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/invalid.xlsx";
+        String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/TestInput.xlsx";
         ExcelReader reader = new ExcelReader(filePath);
         String searchValue = reader.getCellData(0, 0, 0);
-        System.out.println("Searching for: " + searchValue);
         homePage.enterMedicineName(searchValue);
+//    	homePage.enterMedicineName("Paracetamol");
+//        System.out.println("Searching for: " + searchValue);
     }
 
     @And("Click search")
@@ -184,7 +83,7 @@ public class Profile extends BaseSteps {
     //Second Scenario
     @Given("user be on buy medicine page")
     public void user_be_on_buy_medicine_page() {
-    	//homePage2.goToBuyMedicinePage();
+    	homePage2.clickBuyMedicines();
     	//driver.get(config.getProperty("buyMedicineUrl"));
     	//HomePage3.clickBuyMedicines1();
     	
@@ -268,7 +167,7 @@ public class Profile extends BaseSteps {
 
     	    Assert.assertNotNull(medicineName, "Medicine not found at sheet " + int1 + ", row " + int2);
 
-    	    homePage3.enterMedicine(medicineName);  // ✅ Pass actual value
+    	    homePage3.enterMedicine(medicineName);  //  Pass actual value
     	    System.out.println("Entered medicine: " + medicineName);
     	}
         
@@ -287,19 +186,75 @@ public class Profile extends BaseSteps {
     	
     	
 
-    }       
+    }  
+   // --------------------------4th Scenario----------------------------------------------
+    
+    @When("user clicks on Get {int}% off on medicine")
+    public void user_clicks_on_get_off_on_medicine(Integer int1) {
+        homePage3.clickGetMeds();
+    }
+    @When("user navigates to the upload prescriptions page")
+    public void user_navigates_to_the_upload_prescriptions_page() {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new io.cucumber.java.PendingException();
+    }
+
+    @When("click on the view all categories in the product categories")
+    public void click_on_the_view_all_categories_in_the_product_categories() {
+        // Write code here that turns the phrase above into concrete actions
+        //throw new io.cucumber.java.PendingException();
+    	homePage3.clickViewAllCategory();
+    	
+    	
+    }
+
+  
+//
+    @Then("results should be displayed")
+    public void results_should_be_displayed() {
+//    	homePage3.Check();
+//       
+    }
+
+    
+
+//@Then("results should be displayed")
+//public void results_should_be_displayed() {
+//    // Expected breadcrumb text
+//    String expectedText = "Home > All categories";
+//
+//    // Locate the element using XPath
+//    WebElement breadcrumb = driver.findElement(By.xpath("//div[text()='Home > All categories']"));
+//
+//    // Assert that the text matches
+//    Assert.assertEquals("Breadcrumb text does not match!", expectedText, breadcrumb.getText());
+//}
+
+
+//-------------------------------------5th scenario-----------------------------------
+@When("user click the first product")
+public void user_click_the_first_product() {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new io.cucumber.java.PendingException();
+	 homePage3.clickProduct(); 
 }
 
+@When("click on cart icon")
+public void click_on_cart_icon() {
+    
+	//Assert.assertTrue(homePage3.clickCart());
+	homePage3.clickCart();
+	
+}
 
+@Then("verify no product to be visible")
+public void verify_no_product_to_be_visible() {
+    
+//	Assert.assertTrue(homePage3.Verify());
+	homePage3.Verify();
+}
 
-
-
-
-
-
-
-
-
+}
 
 
 
