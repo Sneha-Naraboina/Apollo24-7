@@ -12,10 +12,10 @@ import io.cucumber.testng.CucumberOptions;
         "pretty",
         "html:target/cucumber-reports/cucumber.html",
         "json:target/cucumber-reports/cucumber.json"
-    },
+    }
     //tags="@SortBy"
     //tags="@TopDeals"
-    tags="@Search"
+   // tags="@Search"
     //tags ="@ViewCart"
 )
 public class TestRunnerTestNG extends AbstractTestNGCucumberTests {
