@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="92.364" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-13T17:29:12.235075500Z">
-<testcase classname="Shop by Category Functionality" name="User Landing on HomePage" time="18.296">
+<testsuite name="Cucumber" time="104.083" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-11-14T09:45:46.917968500Z">
+<testcase classname="Shop by Category Functionality" name="User Landing on HomePage" time="24.142">
 <system-out><![CDATA[
 Given the user is on the Apollo 247 homepage................................passed
 When the user clicks on Health Monitors under Shop by Category..............passed
 Then the categories page should be displayed................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on HealthMonitors Page" time="21.674">
+<testcase classname="Shop by Category Functionality" name="user Landing on HealthMonitors Page" time="21.795">
 <system-out><![CDATA[
 Given the user is on Health Monitors Page...................................passed
 When the user clicks on Apollo products.....................................passed
@@ -16,7 +16,7 @@ And user clicks on Baby care prodcuts.......................................pass
 Then user clicls on OTC products............................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on Nutritional Drinks and Supplements page" time="15.47">
+<testcase classname="Shop by Category Functionality" name="user Landing on Nutritional Drinks and Supplements page" time="15.564">
 <system-out><![CDATA[
 Given the user is on Nutritional Drinks and Supplements page................passed
 When the user clicks on Nutritional Drinks and Supplements..................passed
@@ -25,7 +25,18 @@ And the user clicks on Sports Nutrition.....................................pass
 Then the user verifies the Sports Nutrition page is displayed...............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.1" time="18.706">
+<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.1" time="19.029">
+<system-out><![CDATA[
+Given the user is on Nutritional Drinks and Supplements page................passed
+When the user clicks on Nutritional Drinks and Supplements..................passed
+And the user clicks on Nutritional Drinks...................................passed
+And the user clicks on Sports Nutrition.....................................passed
+And the user clicks on sortBy dropdown......................................passed
+And user select SortOption from Excel 0 0...................................passed
+Then the user verifies the Sports Nutrition page is displayed...............passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.2" time="18.023">
 <system-out><![CDATA[
 Given the user is on Nutritional Drinks and Supplements page................passed
 When the user clicks on Nutritional Drinks and Supplements..................passed
@@ -36,15 +47,18 @@ And user select SortOption from Excel 0 1...................................pass
 Then the user verifies the Sports Nutrition page is displayed...............passed
 ]]></system-out>
 </testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.2" time="17.768">
+<testcase classname="Shop by Category Functionality" name="user Landing on Home Essentials page - #1.1" time="2.501">
 <system-out><![CDATA[
-Given the user is on Nutritional Drinks and Supplements page................passed
-When the user clicks on Nutritional Drinks and Supplements..................passed
-And the user clicks on Nutritional Drinks...................................passed
-And the user clicks on Sports Nutrition.....................................passed
-And the user clicks on sortBy dropdown......................................passed
-And user select SortOption from Excel 0 2...................................passed
-Then the user verifies the Sports Nutrition page is displayed...............passed
+Given the user clicks on search bar.........................................passed
+When the user enters inputs from Excel 1 0..................................passed
+Then the user Clicks on Home Essentials Page................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Shop by Category Functionality" name="user Landing on Home Essentials page - #1.2" time="2.336">
+<system-out><![CDATA[
+Given the user clicks on search bar.........................................passed
+When the user enters inputs from Excel 1 1..................................passed
+Then the user Clicks on Home Essentials Page................................passed
 ]]></system-out>
 </testcase>
 </testsuite>
