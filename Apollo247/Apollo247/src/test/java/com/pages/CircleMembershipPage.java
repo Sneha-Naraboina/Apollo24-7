@@ -3,7 +3,9 @@ package com.pages;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeoutException;
 
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -222,7 +224,7 @@ public class CircleMembershipPage {
 	    //private static final String COUPON_INPUT_FIELD = "/html/body/div[4]/div[2]/div/div[1]/h2/div[2]";
 	    private static final String COUPON_INPUT_FIELD = "//input[@placeholder='Enter Coupon Code']";
 	   // private static final String CANCEL_BUTTON = "//button[contains(text(),'Cancel')]";
-	    private static final String CANCEL_BUTTON = "/html/body/div[4]/div[2]/div/div[3]";
+	    private static final String CANCEL_BUTTON = "//span[text()='Cancel']";
 	   
 	 
 	    @FindBy(xpath = APPLY_COUPON_BUTTON)
@@ -258,7 +260,72 @@ public class CircleMembershipPage {
     	 wait.until(ExpectedConditions.elementToBeClickable(cancelBtn)).click();
      }
 
+     
+     //++++++++++++++++++++++++++++++++++++++  terms scenario ++++++++++++++++++++++++++++++++++++++++++
+     
+     private static final String LOGIN_TO_CONTINUE_BUTTON = "//span[text() = 'Login to continue']";
+     private static final String TERMS_LINK = "//a[contains(text(),'Terms and Conditions')]";
+     private static final String VERIFY = "//h1[contains(text(),'terms & conditions')]";
+     
+     @FindBy(xpath = LOGIN_TO_CONTINUE_BUTTON)
+	    private WebElement loginToContinueBtn;
+     
+     @FindBy(xpath = TERMS_LINK)
+     private WebElement termsLink;
+     
+     @FindBy(xpath = VERIFY)
+     private WebElement verify;
 
+     public void clickLoginToContinue() 
+	    {
+//			// TODO Auto-generated method stub 
+	 	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	 	        wait.until(ExpectedConditions.elementToBeClickable(loginToContinueBtn)).click();
+	 	}
+     public void clickTerms() 
+     {
+         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+         wait.until(ExpectedConditions.elementToBeClickable(termsLink)).click();
+     }
+     
+     public boolean checkverify() //throws TimeoutException
+     {
+//    	 wait.until(ExpectedConditions.visibilityOf(verify));
+//		 return true;
+
+    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	    return wait.until(ExpectedConditions.visibilityOf(verify)).isDisplayed();
+
+    	 
+     }
+     
+     //+++++++++++++++++++++++++++++++++++++++++++ buys insurance +++++++++++++++++++++++++++++++++++++++
+     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+     
+     private static final String CLICK_BUY_INSURANCE = "//a[text()='Buy Insurance']";
+     
+     @FindBy(xpath = CLICK_BUY_INSURANCE)
+     private WebElement buyinsurance ;
+     
+     public void clickBuyInsurance()
+     {
+    	buyinsurance.click();
+     }
+     
+    // private static final String PINCODE_INPUT = "//input[@placeholder='Enter 6 digit pincode']";
+     
+     private static final String PINCODE_INPUT = "//input[@placeholder='Enter 6 digit pincode']";
+
+     @FindBy(xpath = PINCODE_INPUT)
+     private WebElement pincodeInput;
+
+     public void enterPincode(String pincode) {
+         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+         wait.until(ExpectedConditions.visibilityOf(pincodeInput));
+         pincodeInput.clear();
+         pincodeInput.sendKeys(pincode);
+     }
+     
 }
 
 

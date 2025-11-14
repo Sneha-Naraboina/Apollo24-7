@@ -46,3 +46,32 @@ Scenario: Navigate to Join Circle from CircleMembership
     | rowIndex |
     |    0     |
     
+    
+@tandc
+Scenario: To view terms and Conditions
+   Given the user is on the Apollo247 homepage4
+   When the user clicks on Circle Membership4
+   And user clicks on the Join Circle4
+   And the user clicks on Login to Continue
+   And user clicks on the terms
+   Then terms and Conditions page should be displayed
+   
+   
+@location
+Scenario: To enter pincode
+  Given the user is on the Apollo24 homepage5
+  When the user clicks on Buy Insurance
+  And user navigates to insurance page
+  And the user enters the pincode from sheet <sheet> and row <row>
+  Then user clicks on submit
+  
+Examples: 
+	| sheet | row |
+	|   1   |  0  |
+	|   1   |  1  |
+   
+   
+   
+   
+   
+   
