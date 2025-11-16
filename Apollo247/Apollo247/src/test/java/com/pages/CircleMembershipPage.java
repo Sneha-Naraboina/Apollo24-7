@@ -1,22 +1,13 @@
 package com.pages;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.Properties;
-import java.util.concurrent.TimeoutException;
-
-import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.parameters.ExcelReader;
-import com.parameters.PropertyReader;
 
 public class CircleMembershipPage {
 
@@ -61,15 +52,11 @@ public class CircleMembershipPage {
 	    
 	
 	    // Locators
-	    // private static final String CIRCLE_MEMBERSHIP_LINK = "//a[contains(text(),'Circle Membership')]";
+	 
 	    private static final String JOIN_CIRCLE_BUTTON = "(//span[text()='Join Circle'])[2]";
 	    private static final String SIX_MONTHS_PLAN = " //h3[text()='149']"; //"//label[contains(text(),'6 Months')]";
 	    private static final String TWELVE_MONTHS_PLAN = "//label[contains(text(),'12 Months')]";
-	   private static final String SELECTED_PLAN_HEADER = "//div[contains(@class,'plan-header')]";
-
-	    // WebElements
-//	    @FindBy(xpath = CIRCLE_MEMBERSHIP_LINK)
-//	    private WebElement circleMembershipLink;
+	   private static final String SELECTED_PLAN_HEADER = "//div[contains(@class,'plan-header')]"; 
 
 	    @FindBy(xpath = JOIN_CIRCLE_BUTTON)
 	    private WebElement joinCircleButton;
@@ -83,18 +70,8 @@ public class CircleMembershipPage {
 	    @FindBy(xpath = SELECTED_PLAN_HEADER)
 	    private WebElement selectedPlanHeader;
 
-	    // Constructor
-//	    public CircleMembershipPage(WebDriver driver) {
-//	        this.driver = driver;
-//	        PageFactory.initElements(driver, this);
-//	    }
-
-	    // Click Circle Membership
-//	    public void clickCircleMembership() {
-//	        circleMembershipLink.click();
-//	    }
-
-	    // ✅ Click Join Circle button
+	  
+	    //  Click Join Circle button
 	    public void clickJoinCircle() {
 	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	        try {
@@ -105,7 +82,7 @@ public class CircleMembershipPage {
 	        }
 	    }
 
-	    // ✅ Select plan based on properties
+	    //  Select plan based on properties
 	    public void selectPlan(String PlanType) {
 	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	        try {
@@ -304,8 +281,23 @@ public class CircleMembershipPage {
      
      private static final String CLICK_BUY_INSURANCE = "//a[text()='Buy Insurance']";
      
+     private static final String PINCODE_INPUT = "//input[@placeholder='Enter 6 digit pincode']";
+     
+     private static final String CHANGE_LOCATION_BUTTON = "//span[text()='Change Location']/parent::button";
+
+     private static final String SUBMIT_BUTTON = "//button[@class= 'PincodeModal_primary__WzEmU']"; // Update XPath if needed
+
      @FindBy(xpath = CLICK_BUY_INSURANCE)
      private WebElement buyinsurance ;
+     
+     @FindBy(xpath = PINCODE_INPUT)
+     private WebElement pincodeInput;
+    
+     @FindBy(xpath = CHANGE_LOCATION_BUTTON)
+     private WebElement changeLocationBtn;
+     
+     @FindBy(xpath = SUBMIT_BUTTON)
+     private WebElement submitBtn;
      
      public void clickBuyInsurance()
      {
@@ -314,10 +306,12 @@ public class CircleMembershipPage {
      
     // private static final String PINCODE_INPUT = "//input[@placeholder='Enter 6 digit pincode']";
      
-     private static final String PINCODE_INPUT = "//input[@placeholder='Enter 6 digit pincode']";
-
-     @FindBy(xpath = PINCODE_INPUT)
-     private WebElement pincodeInput;
+     
+     public void clickChangeLocation() 
+     {
+    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	 wait.until(ExpectedConditions.elementToBeClickable(changeLocationBtn)).click();
+     }
 
      public void enterPincode(String pincode) {
          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -325,6 +319,14 @@ public class CircleMembershipPage {
          pincodeInput.clear();
          pincodeInput.sendKeys(pincode);
      }
+     
+
+     public void clickSubmit() 
+     {
+    	 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	 wait.until(ExpectedConditions.elementToBeClickable(submitBtn)).click();
+     }
+
      
 }
 
