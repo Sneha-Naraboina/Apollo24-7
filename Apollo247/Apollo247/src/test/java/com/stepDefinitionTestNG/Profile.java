@@ -374,30 +374,58 @@ import io.cucumber.java.en.When;
 		    // Write code here that turns the phrase above into concrete actions
 		    //throw new io.cucumber.java.PendingException();
 		}
-
-		@When("the user enters the pincode from sheet {int} and row {int}")
-		public void the_user_enters_the_pincode_from_sheet_and_row(Integer int1, Integer int2) 
-		{
+		
+		
+		@When("the user clicks on Change Location")
+		public void the_user_clicks_on_change_location() {
 		    // Write code here that turns the phrase above into concrete actions
-		    //throw new io.cucumber.java.PendingException();
-			try {
+		    // throw new io.cucumber.java.PendingException();
+			
+			circlePage.clickChangeLocation();
+		}
+		
+		
+//		@When("the user enters the pincode from sheet {int} and row {int}")
+//		public void the_user_enters_the_pincode_from_sheet_and_row(Integer int1, Integer int2) 
+//		{
+//		    // Write code here that turns the phrase above into concrete actions
+//		    //throw new io.cucumber.java.PendingException();
+//			try {
+//		        String excelPath = PropertyReader.get("excel_Path");
+//		        ExcelReader.loadExcel(excelPath);
+//		        String pincode = ExcelReader.getCellDataBySheetIndex(int1 - 1, int2, 0);
+//		        Thread.sleep(6000); //wait for 6 secs before interacting
+//		        circlePage.enterPincode(pincode);
+//		    } catch (Exception e) {
+//		        e.printStackTrace();
+//		        throw new RuntimeException("Failed to enter pincode from Excel");
+//		    }
+//
+//			
+//		}
+		
+		
+		@When("the user enters the pincode from sheet {int} and row {int}")
+		public void the_user_enters_the_pincode_from_sheet_and_row(Integer int1, Integer int2) {
+		    try {
 		        String excelPath = PropertyReader.get("excel_Path");
 		        ExcelReader.loadExcel(excelPath);
+
+		        // Adjust sheet index to 0-based
 		        String pincode = ExcelReader.getCellDataBySheetIndex(int1 - 1, int2, 0);
-		        Thread.sleep(6000); //wait for 6 secs before interacting
+
 		        circlePage.enterPincode(pincode);
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		        throw new RuntimeException("Failed to enter pincode from Excel");
 		    }
-
-			
 		}
 
 		@Then("user clicks on submit")
 		public void user_clicks_on_submit() {
 		    // Write code here that turns the phrase above into concrete actions
 		    //throw new io.cucumber.java.PendingException();
+			circlePage.clickSubmit();
 		}
 
 	}

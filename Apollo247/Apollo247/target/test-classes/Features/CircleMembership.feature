@@ -62,13 +62,14 @@ Scenario: To enter pincode
   Given the user is on the Apollo24 homepage5
   When the user clicks on Buy Insurance
   And user navigates to insurance page
+  And the user clicks on Change Location
   And the user enters the pincode from sheet <sheet> and row <row>
   Then user clicks on submit
   
 Examples: 
 	| sheet | row |
-	|   1   |  0  |
-	|   1   |  1  |
+	|   2   |  0  |
+	|   2   |  1  |
    
    
    
