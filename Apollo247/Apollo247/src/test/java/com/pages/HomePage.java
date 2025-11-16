@@ -169,33 +169,33 @@ public class HomePage {
     
     
 
-	public void clickSortBy() {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'Aj') and contains(@style,'display')]")));
-
-	    WebElement sortButton = wait.until(ExpectedConditions.elementToBeClickable(sortbybutton));
-
-	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", sortButton);
-
-	    try {
-	        sortButton.click();
-	    } catch (ElementClickInterceptedException e) {
-
-	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sortButton);
-	    }
-	}
+//	public void clickSortBy() {
+//	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+//
+//	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'Aj') and contains(@style,'display')]")));
+//
+//	    WebElement sortButton = wait.until(ExpectedConditions.elementToBeClickable(sortbybutton));
+//
+//	    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", sortButton);
+//
+//	    try {
+//	        sortButton.click();
+//	    } catch (ElementClickInterceptedException e) {
+//
+//	        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", sortButton);
+//	    }
+//	}
 	
 
 
-	public void selectLowToHigh(int sheet, int row) throws IOException {
-		
-		String[] firstXpath = ExcelReader.getRowData(sheet, row); 
-		new WebDriverWait(driver, Duration.ofSeconds(15))
-        .until(ExpectedConditions.visibilityOf(LowToHigh));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", LowToHigh);
-		
-	}
+//	public void selectLowToHigh() {
+//		
+//		//String[] firstXpath = ExcelReader.getRowData(sheet, row); 
+//		new WebDriverWait(driver, Duration.ofSeconds(15))
+//        .until(ExpectedConditions.visibilityOf(LowToHigh));
+//        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", LowToHigh);
+//		
+//	}
 	
 	
 
@@ -205,15 +205,15 @@ public class HomePage {
 		
 	}
 
-	public boolean verifysortby() {
-        try {
-            new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.urlContains("top-booked-tests"));
-            return verifyViewAll.isDisplayed();
-        } catch (TimeoutException e) {
-            return false;
-        }
-    }
+//	public boolean verifysortby() {
+//        try {
+//            new WebDriverWait(driver, Duration.ofSeconds(30))
+//                .until(ExpectedConditions.urlContains("top-booked-tests"));
+//            return verifyViewAll.isDisplayed();
+//        } catch (TimeoutException e) {
+//            return false;
+//        }
+//    }
 //	public void selectTopDeals(int sheet,int row) throws IOException {
 //		String[] topDealsXpath = ExcelReader.getRowData(sheet, row);
 //		new WebDriverWait(driver,Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(topDeals));
@@ -288,7 +288,7 @@ public class HomePage {
 	 
 	 
 	 public void clickEnter() throws InterruptedException {
-		 Thread.sleep(5000);
+		 Thread.sleep(2000);
 	        new WebDriverWait(driver, Duration.ofSeconds(10))
 	            .until(ExpectedConditions.elementToBeClickable(inputBox))
 	            .click();

@@ -60,11 +60,11 @@ public class Hooks extends BasePage {
             extentTest.get().warning("Error during afterScenario: " + e.getMessage());
         }
         
-//        finally {
-//            if (driver != null) {
-//                driver.quit();
-//            }
-//            extentReports.flush();
-//        }
+        finally {
+            if (driver != null) {
+                driver.quit();
+            }
+            extentReports.flush();
+        }
     }
 }

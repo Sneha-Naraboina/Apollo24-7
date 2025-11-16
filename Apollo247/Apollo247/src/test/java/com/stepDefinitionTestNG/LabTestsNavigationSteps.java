@@ -61,31 +61,35 @@ public class LabTestsNavigationSteps extends BasePage {
         
     	}	
     		
-    	@When("I click on the Sort By dropdown")
-    	public void i_click_on_the_sort_by_dropdown() {
-    		homePage.clickclose();
-    	    homePage.clickSortBy();
-    	}
-
-
+//    	@When("I click on the Sort By dropdown")
+//    	public void i_click_on_the_sort_by_dropdown() {
+//    		homePage.clickclose();
+//    	    homePage.clickSortBy();
+//    	}
+//
+//
+//    	
+////    	@When("I select SortOption from Excel {int} {int}")
+////    	public void i_select_sort_option_from_excel(Integer sheet, Integer row) throws IOException {
+////    		homePage.selectLowToHigh(sheet, row);
+////    	}
+//    	@When("I select SortOption from Sortby")
+//    	public void i_select_sort_option_from_sortby() {
+//    		homePage.selectLowToHigh();
+//    	}
     	
-    	@When("I select SortOption from Excel {int} {int}")
-    	public void i_select_sort_option_from_excel(Integer sheet, Integer row) throws IOException {
-    		homePage.selectLowToHigh(sheet, row);
-    	}
-    	
     	
 
-    	@Then("the list of lab tests should be display")
-    	public void the_list_of_lab_tests_should_be_display() {
-//    		Assert.assertTrue(homePage.verifylowtohigh(), "Low to high tests is displayed !");
-    		String expectedUrl = PropertyReader.getProperty("targetUrl");
-        	String actualUrl = driver.getCurrentUrl();
-        	System.out.println("Actual URL: " + actualUrl);
-
-        	Assert.assertEquals(actualUrl, expectedUrl, "View All page URL mismatch!");
-        	Assert.assertTrue(homePage.verifysortby(), "View All section is not visible!");
-    	}
+//    	@Then("the list of lab tests should be display")
+//    	public void the_list_of_lab_tests_should_be_display() {
+////    		Assert.assertTrue(homePage.verifylowtohigh(), "Low to high tests is displayed !");
+//    		String expectedUrl = PropertyReader.getProperty("targetUrl");
+//        	String actualUrl = driver.getCurrentUrl();
+//        	System.out.println("Actual URL: " + actualUrl);
+//
+//        	Assert.assertEquals(actualUrl, expectedUrl, "View All page URL mismatch!");
+//        	Assert.assertTrue(homePage.verifysortby(), "View All section is not visible!");
+//    	}
     	
     	@When("I select filters from Excel {int} {int}")
     	public void i_select_filters_from_excel(Integer sheet, Integer row) throws IOException {

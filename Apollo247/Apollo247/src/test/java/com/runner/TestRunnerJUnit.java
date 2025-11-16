@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
     features = ".\\src\\test\\resources\\com\\Features\\LabTestsNavigation.feature",
     glue = "com.stepDefinitionTestNG",
     //tags="@ViewAllPage",
-    tags="@CartFunctionality",
+    //tags="@CartFunctionality",
     
     plugin = {
         "pretty",
