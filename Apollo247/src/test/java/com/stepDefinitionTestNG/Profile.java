@@ -1,221 +1,322 @@
-//launching code but not navigating properly
 
+
+//C:\Training materials\JAVA\Apollo 247\Apollo247\src\test\resources\ExcelData\Brands.xlsx
 package com.stepDefinitionTestNG;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Properties;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-import com.pages.FindDoctorsPage;
+import com.pages.HomePage;
 import com.parameters.ExcelReader;
 import com.parameters.PropertyReader;
+import com.setup.BaseSteps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+public class Profile {
+
+    HomePage homePage;
+    
+
+    @Given("the user is on the Apollo {int} homepage")
+    public void the_user_is_on_the_apollo_homepage(Integer int1) {
+        BaseSteps.launchBrowser();
+        BaseSteps.sleep(3000);
+        homePage = new HomePage();
+    }
+
+    @When("the user clicks on Health Monitors under Shop by Category")
+    public void the_user_clicks_on_health_monitors_under_shop_by_category() {
+        BaseSteps.sleep(2000);
+        homePage.clickHealthMonitors();
+        BaseSteps.sleep(3000);
+    }
+
+    @When("the categories page should be displayed")
+    public void the_categories_page_should_be_displayed() {
+        homePage.assertHealthMonitorsPageDisplayed();
+    }
+
+//second scenario
+    @Given("the user is on Health Monitors Page")
+    public void the_user_is_on_health_monitors_page() {
+        BaseSteps.sleep(3000);
+        homePage = new HomePage();
+    }
+
+    @When("the user clicks on Apollo products")
+    public void the_user_clicks_on_apollo_products() {
+        BaseSteps.sleep(2000);
+        homePage.clickApolloProducts();
+        BaseSteps.sleep(2000);
+    }
+    
+
+
+    @When("user clicks on personal care products")
+    public void user_clicks_on_personal_care_products() {
+        BaseSteps.sleep(2000);
+        homePage.clickPersonalCareProducts();
+        BaseSteps.sleep(2000);
+    }
+
+    @When("user clicks on Baby care prodcuts")
+    public void user_clicks_on_baby_care_prodcuts() {
+        BaseSteps.sleep(2000);
+        homePage.clickBabyCareProducts();
+        BaseSteps.sleep(2000);
+    }
+
+    @Then("user clicls on OTC products")
+    public void user_clicls_on_otc_products() {
+        BaseSteps.sleep(2000);
+        homePage.clickOTCProducts();
+        BaseSteps.sleep(2000);
+    }
+    
+
+//third scenario
+    @Given("the user is on Nutritional Drinks and Supplements page")
+    public void the_user_is_on_nutritional_drinks_and_supplements_page() {
+        BaseSteps.sleep(3000);
+        homePage = new HomePage();
+    }
+
+    @When("the user clicks on Nutritional Drinks and Supplements")
+    public void the_user_clicks_on_nutritional_drinks_and_supplements() {
+        BaseSteps.sleep(2000);
+        homePage.clickNutritionalDrinks();
+        BaseSteps.sleep(2000);
+    }
+
+    @When("the user clicks on Nutritional Drinks")
+    public void the_user_clicks_on_nutritional_drinks() {
+        BaseSteps.sleep(2000);
+        homePage.clickNutritionalDrinks();
+        BaseSteps.sleep(2000);
+    }
+
+    @When("the user clicks on Sports Nutrition")
+    public void the_user_clicks_on_sports_nutrition() {
+        BaseSteps.sleep(2000);
+        homePage.clickSportsNutrition();
+        BaseSteps.sleep(2000);
+    }
+
+
+    @Then("the user verifies the Sports Nutrition page is displayed")
+    public void the_user_verifies_the_sports_nutrition_page_is_displayed() {
+        homePage.assertSportsNutritionClickedAndNavigated();
+    }
+    
+
+
+    //fourth new scenario
+    @When("the user clicks on sortBy dropdown")
+    public void the_user_clicks_on_sort_by_dropdown() {
+        BaseSteps.sleep(2000);
+        homePage.clickSortByDropdown();
+    }
+
+        @When("user select SortOption from Excel {int} {int}")
+        public void user_select_sort_option_from_excel(Integer sheet, Integer row) {
+            try {
+                homePage.selectSortOptionFromExcel(sheet, row);
+            } catch (IOException e) {
+                Assert.fail("Failed to read sort option from Excel: " + e.getMessage());
+            }
+
+    
+}
+    
+//fifth scenario
+        
+
+
+        @Given("the user clicks on search bar")
+        public void the_user_clicks_on_search_bar() {
+        	homePage = new HomePage();
+            homePage.clickSearchBar();
+        }
+
+        @When("the user enters inputs from Excel {int} {int}")
+        public void the_user_enters_inputs_from_excel(Integer sheet, Integer row) throws IOException {
+            homePage.enterSearchInputsFromExcel(sheet, row);
+        }
+
+        @Then("the user Clicks on Home Essentials Page")
+        public void the_user_clicks_on_home_essentials_page() {
+            homePage = new HomePage();
+            homePage.clickHomeEssentials();
+        }
+
+    }
+
+
+
+//=============the above is origin============
+
+//================below reports code==================
+
+
+//package com.stepDefinitionTestNG;
 //
-//import java.time.Duration;
-//import java.time.Duration;
-//import java.util.List;
+//import java.io.IOException;
 //
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.ui.ExpectedConditions;
-//import org.openqa.selenium.support.ui.WebDriverWait;
 //import org.testng.Assert;
 //
-//import io.cucumber.java.en.And;
+//import com.pages.HomePage;
+//import com.setup.BaseSteps;
+//
 //import io.cucumber.java.en.Given;
 //import io.cucumber.java.en.Then;
 //import io.cucumber.java.en.When;
-
-public class Profile  {
-	FindDoctorsPage findDoctorsPage ;
-	FindDoctorsPage finddoctorspage = new FindDoctorsPage(Hooks.driver);
-	
-	static WebDriver driver;
-	Properties prop=PropertyReader.readProperty();
-	
-	//1st scenario============================
-	
-	@Given("User opens Apollo Pharmacy homepage")
-	public void user_opens_apollo_pharmacy_homepage() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		//finddoctorspage.clickDermatology();
-	}
-
-	@When("User clicks on Find Doctors")
-	public void user_clicks_on_find_doctors() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("Validate the title of the webpage")
-	public void validate_the_title_of_the_webpage() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-	}
-
- //2nd scenario=============================================================
-	
-	@Then("Validate that Browse by Specialty option is displayed")
-	public void validate_that_browse_by_specialty_option_is_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-	}
-
-	@And("User clicks on Dermatology")
-	public void user_clicks_on_dermatology() {
-		 FindDoctorsPage finddoctorspage = new FindDoctorsPage(Hooks.driver);
-		    finddoctorspage.clickDermatology();
-
-	}
-
-	@Then("User should navigate to Dermatologists page")
-	public void user_should_navigate_to_dermatologists_page() {
-		
-	}
-		
-		
-	
-		
-  //3rd scenario=================================================================	   
-	@Given("the user is on the Apollo Pharmacy homepage")
-	public void the_user_is_on_the_apollo_pharmacy_homepage() {
-		finddoctorspage.clickDermatology();
-	}
-
-	@When("the user applies filters {int}{int} to find doctors")
-	public void the_user_applies_filters_to_find_doctors(Integer rowno,Integer sheetno) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		//String excelPath = prop.getProperty("path"); // from config.properties
-		ExcelReader excel = new ExcelReader();
-		String filePath = excel.filePath;
-		List<String> data = excel.getRowData(sheetno,rowno);
-		System.out.println("Excel Data: " + data);
-		boolean status = false;
- 
-		// Decide action based on rowIndex
-		if (rowno == 0) {
-			// First brand (Petkit)
-			 status=finddoctorspage.clickCheckBox(); // Method for Petkit
-		} else if (rowno == 1) {
-			// Second brand (Petkit again or another)
-			 finddoctorspage.clickSecondCheckbox(); // Method for second brand
-		}  else {
-			throw new IllegalArgumentException("Unsupported row index: " + rowno);
-		}
- 
-		Assert.assertTrue(status);    
-	}
-
-	@And("selects a doctor from the filtered list and clicks on Online Consult")
-	public void selects_a_doctor_from_the_filtered_list() {
-		
-		finddoctorspage.onlineConsultButton();
-	    
-	}
-
-	@And("clicks on Continue")
-	public void clicks_on_continue() {
-	    finddoctorspage.clickContinue();
-	}
-
-	@Then("validate tha login popup")
-	public void validate_tha_login_popup() {
-	    finddoctorspage.verifySignin();
-	}
-//4th Scenario============================================================
-	@Given("User clicks on Dermatology and navigated to Dermatologist page")
-	public void user_clicks_on_dermatology_and_navigated_to_dermatologist_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		finddoctorspage.clickDermatology();
-	}
-
-	@When("User search on search bar")
-	public void user_search_on_search_bar() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		finddoctorspage.searchInvalidDoctor();
-	}
-
-	@When("search for invalid Doctor names {int} and {int}")
-	public void search_for_invalid_doctor_names(Integer sheetno, Integer rowno) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		ExcelReader excel = new ExcelReader();
-		String filePath = excel.filePath;
-		List<String> data = excel.getRowData(sheetno,rowno);
-		System.out.println("Excel Data: " + data);
-		boolean status = false;
-		
-	}
-
-	@Then("No results found message should be displayed")
-	public void no_results_found_message_should_be_displayed() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		
-	}
-
-
-	
-	
-//5th Scenario============================================================
-	@Given("User is on home page and navigated to booking page")
-	public void user_is_on_home_page_and_navigated_to_booking_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		finddoctorspage.clickDermatology();
-	}
-
-	@When(" User is not logged in ")
-	public void user_is_not_logged_in() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		finddoctorspage.onlineConsultButton();
-	    
-		
-		
-	}
-
-	@When("User tries to book a consultation")
-	public void user_tries_to_book_a_consultation() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-	    finddoctorspage.clickContinue();
-	}
-
-	@Then("the user should be redirected to the login page")
-	public void the_user_should_be_redirected_to_the_login_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    //throw new io.cucumber.java.PendingException();
-		finddoctorspage.verifySignin();
-	}
-
-
-	
-	
-
-	
-	
-	
-	
-	
-	
+//
+//public class Profile {
+//
+//    HomePage homePage;
+//
+//    @Given("the user is on the Apollo {int} homepage")
+//    public void the_user_is_on_the_apollo_homepage(Integer int1) {
+//        BaseSteps.launchBrowser();
+//        BaseSteps.sleep(3000);
+//        homePage = new HomePage(BaseSteps.test);
+//    }
+//
+//    @When("the user clicks on Health Monitors under Shop by Category")
+//    public void the_user_clicks_on_health_monitors_under_shop_by_category() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickHealthMonitors();
+//        BaseSteps.sleep(3000);
+//    }
+//
+//    @When("the categories page should be displayed")
+//    public void the_categories_page_should_be_displayed() {
+//        homePage.assertHealthMonitorsPageDisplayed();
+//    }
+//
+//    // Second scenario
+//    @Given("the user is on Health Monitors Page")
+//    public void the_user_is_on_health_monitors_page() {
+//        BaseSteps.sleep(3000);
+//        homePage = new HomePage(BaseSteps.test);
+//    }
+//
+//    @When("the user clicks on Apollo products")
+//    public void the_user_clicks_on_apollo_products() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickApolloProducts();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @When("user clicks on personal care products")
+//    public void user_clicks_on_personal_care_products() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickPersonalCareProducts();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @When("user clicks on Baby care prodcuts")
+//    public void user_clicks_on_baby_care_prodcuts() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickBabyCareProducts();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @Then("user clicls on OTC products")
+//    public void user_clicls_on_otc_products() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickOTCProducts();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    // Third scenario
+//    @Given("the user is on Nutritional Drinks and Supplements page")
+//    public void the_user_is_on_nutritional_drinks_and_supplements_page() {
+//        BaseSteps.sleep(3000);
+//        homePage = new HomePage(BaseSteps.test);
+//    }
+//
+//    @When("the user clicks on Nutritional Drinks and Supplements")
+//    public void the_user_clicks_on_nutritional_drinks_and_supplements() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickNutritionalDrinksSupplements();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @When("the user clicks on Nutritional Drinks")
+//    public void the_user_clicks_on_nutritional_drinks() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickNutritionalDrinks();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @When("the user clicks on Sports Nutrition")
+//    public void the_user_clicks_on_sports_nutrition() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickSportsNutrition();
+//        BaseSteps.sleep(2000);
+//    }
+//
+//    @Then("the user verifies the Sports Nutrition page is displayed")
+//    public void the_user_verifies_the_sports_nutrition_page_is_displayed() {
+//        homePage.assertSportsNutritionClickedAndNavigated();
+//    }
+//
+//    // Fourth scenario
+//    @When("the user clicks on sortBy dropdown")
+//    public void the_user_clicks_on_sort_by_dropdown() {
+//        BaseSteps.sleep(2000);
+//        homePage.clickSortByDropdown();
+//    }
+//
+//    @When("user select SortOption from Excel {int} {int}")
+//    public void user_select_sort_option_from_excel(Integer sheet, Integer row) {
+//        try {
+//            homePage.selectSortOptionFromExcel(sheet, row);
+//        } catch (IOException e) {
+//            Assert.fail("Failed to read sort option from Excel: " + e.getMessage());
+//        }
+//    }
+//
+//    // Fifth scenario
+//    @Given("the user clicks on search bar")
+//    public void the_user_clicks_on_search_bar() {
+//        homePage = new HomePage(BaseSteps.test);
+//        homePage.clickSearchBar();
+//    }
+//
+//    @When("the user enters inputs from Excel {int} {int}")
+//    public void the_user_enters_inputs_from_excel(Integer sheet, Integer row) throws IOException {
+//        homePage.enterSearchInputsFromExcel(sheet, row);
+//    }
+//
+//    @Then("the user Clicks on Home Essentials Page")
+//    public void the_user_clicks_on_home_essentials_page() {
+//        homePage = new HomePage(BaseSteps.test);
+//        homePage.clickHomeEssentials();
+//    }
+//}
 
 
 
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
