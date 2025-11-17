@@ -47,6 +47,18 @@ Examples:
 | 1     |  1 |
 
 
+Scenario Outline: User enters invalid input in search bar
+
+    Given the user clicks on search bar
+    When the user enters ivalid inputs from Excel <sheet> <row>
+    Then the user should see No results found or appropriate error message
+
+  Examples:
+    | sheet | row |
+    | 2     | 0   |
+    
+    
+
 
  
 
