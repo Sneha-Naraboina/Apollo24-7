@@ -25,7 +25,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.setup.BaseSteps;
- 
+import com.setup.Reports;
+
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
@@ -43,19 +44,35 @@ public class Hooks extends BaseSteps {
         extReports = new ExtentReports();
         extReports.attachReporter(spark);
     }
-    @AfterAll
-    public static void afterAll() { // after file rends this will run
-        extReports.flush(); // to generate extentreport like commit method
-    }
     @Before // before every scenario
     public void beforeScenario(Scenario scenario) {
         test = extReports.createTest(scenario.getName()); // on the test, track the name of scenario
        launchBrowser(); // fresh browser will launch
     }
-
-    @After // after every scenario
-    public void afterScenario() {
-        sleep(4000);
-        driver.quit();
+    
+    @After
+    public void afterScenario(Scenario scenario) {
+        if (scenario.isFailed()) {
+            // Capture screenshot on failure
+            String screenshotPath = Reports.captureScreenshot(driver, scenario.getName());
+            test.fail("Scenario Failed", com.aventstack.extentreports.MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+        } else {
+            test.pass("Scenario Passed");
+        }
+ 
+        if (driver != null) {
+            driver.quit();
+        }
     }
+    @AfterAll
+    public static void afterAll() { // after file rends this will run
+        extReports.flush(); // to generate extentreport like commit method
+    }
+    
+
+//    @After // after every scenario
+//    public void afterScenario() {
+//        sleep(4000);
+//        driver.quit();
+//    }
 }

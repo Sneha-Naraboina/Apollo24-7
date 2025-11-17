@@ -1,15 +1,5 @@
 
 
-        
-		
-	
-
-
-
-
-	
-
-
 package com.pages;
 
 import java.time.Duration;
@@ -45,6 +35,7 @@ public class HomePage2 {
 
     //  Actions
     public static void clickBuyMedicines() {
+    	
         wait.until(ExpectedConditions.elementToBeClickable(buyMedicinesLink));
         Assert.assertTrue(buyMedicinesLink.isDisplayed(), "Buy Medicines link is not visible!");
         buyMedicinesLink.click();
@@ -58,13 +49,72 @@ public class HomePage2 {
         System.out.println("Clicked Diabetes Care");
     }
 
-    public void healthconditionselementshouldbedisplayed() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(
-            org.openqa.selenium.By.xpath("//h2[text()='Apollo Pharmacy Smart Blood Glucose Monitoring Bluetooth System with Diabetes Management App, APG-01 + 25 Test Strips, 1 kit']")
-        ));
+    public void healthconditionselementshouldbedisplayed() {  //healthConditionElement;
+    	
+    	WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(15));
+    	wait.until(ExpectedConditions.visibilityOf(healthConditionElement));
+//        wait.until(ExpectedConditions.presenceOfElementLocated(
+//            org.openqa.selenium.By.xpath("//h2[text()='Apollo Pharmacy Smart Blood Glucose Monitoring Bluetooth System with Diabetes Management App, APG-01 + 25 Test Strips, 1 kit']")
+//        ));
         Assert.assertTrue(healthConditionElement.isDisplayed(), "Health condition element is not visible!");
         healthConditionElement.click();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
+//    public static void clickBuyMedicines() {
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(buyMedicinesLink));
+//            Assert.assertTrue(buyMedicinesLink.isDisplayed(), "Buy Medicines link is not visible!");
+//            buyMedicinesLink.click();
+//            System.out.println("Navigated to Buy Medicines");
+//        } catch (Exception e) {
+//            System.out.println("Exception in clickBuyMedicines: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void clickDiabetesCare1() {
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(diabetesCare));
+//            Assert.assertTrue(diabetesCare.isDisplayed(), "Diabetes Care element is not visible!");
+//            diabetesCare.click();
+//            System.out.println("Clicked Diabetes Care");
+//        } catch (Exception e) {
+//            System.out.println("Exception in clickDiabetesCare1: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void healthconditionselementshouldbedisplayed() {
+//        try {
+//            wait.until(ExpectedConditions.presenceOfElementLocated(
+//                org.openqa.selenium.By.xpath("//h2[text()='Apollo Pharmacy Smart Blood Glucose Monitoring Bluetooth System with Diabetes Management App, APG-01 + 25 Test Strips, 1 kit']")
+//            ));
+//            Assert.assertTrue(healthConditionElement.isDisplayed(), "Health condition element is not visible!");
+//            healthConditionElement.click();
+//        } catch (Exception e) {
+//            System.out.println("Exception in healthconditionselementshouldbedisplayed: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
 }
 
 
