@@ -1,0 +1,53 @@
+package com.setup;
+ 
+import java.util.Properties;
+ 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+ 
+import com.parameters.PropertyReader;
+ 
+public class BaseSteps {
+	public static WebDriver driver;
+    public static void launchBrowser()
+    {
+        Properties prop = PropertyReader.readProperty();
+        String browser = prop.getProperty("browserName"); 
+        
+        if (browser.equalsIgnoreCase("chrome"))             
+        {
+        	System.setProperty("webdriver.chrome.driver","C:\\Training\\SeleniumGrid\\chromedriver.exe");
+            driver = new ChromeDriver();
+        }
+        else if (browser.equalsIgnoreCase("firefox"))       
+        {
+            driver = new FirefoxDriver();
+        }
+        else if (browser.equalsIgnoreCase("edge"))           
+        {
+            driver = new EdgeDriver();
+        }
+        else
+        {
+            System.out.println("Invalid browser specified in config.properties");
+            return;
+        }
+        String url = prop.getProperty("sourceUrl");
+        driver.get(url);
+        driver.manage().window().maximize();
+    }
+    public static void sleep(int msec)                     // Handling waits
+    {
+        try
+        {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+     
+}
