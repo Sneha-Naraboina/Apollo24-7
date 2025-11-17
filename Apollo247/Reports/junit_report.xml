@@ -1,71 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="103.931" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-11-17T14:39:36.059976700Z">
-<testcase classname="Shop by Category Functionality" name="User Landing on HomePage" time="16.79">
+<testsuite name="Cucumber" time="16.104" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-17T18:05:47.102084700Z">
+<testcase classname="Validate Find Doctors functionality on Apollo Pharmacy website" name="Search with invalid specialty" time="15.038">
 <system-out><![CDATA[
-Given the user is on the Apollo 247 homepage................................passed
-When the user clicks on Health Monitors under Shop by Category..............passed
-Then the categories page should be displayed................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on HealthMonitors Page" time="21.95">
-<system-out><![CDATA[
-Given the user is on Health Monitors Page...................................passed
-When the user clicks on Apollo products.....................................passed
-And user clicks on personal care products...................................passed
-And user clicks on Baby care prodcuts.......................................passed
-Then user clicls on OTC products............................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on Nutritional Drinks and Supplements page" time="15.844">
-<system-out><![CDATA[
-Given the user is on Nutritional Drinks and Supplements page................passed
-When the user clicks on Nutritional Drinks and Supplements..................passed
-And the user clicks on Nutritional Drinks...................................passed
-And the user clicks on Sports Nutrition.....................................passed
-Then the user verifies the Sports Nutrition page is displayed...............passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.1" time="19.71">
-<system-out><![CDATA[
-Given the user is on Nutritional Drinks and Supplements page................passed
-When the user clicks on Nutritional Drinks and Supplements..................passed
-And the user clicks on Nutritional Drinks...................................passed
-And the user clicks on Sports Nutrition.....................................passed
-And the user clicks on sortBy dropdown......................................passed
-And user select SortOption from Excel 0 0...................................passed
-Then the user verifies the Sports Nutrition page is displayed...............passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on sports nutrition page - #1.2" time="18.499">
-<system-out><![CDATA[
-Given the user is on Nutritional Drinks and Supplements page................passed
-When the user clicks on Nutritional Drinks and Supplements..................passed
-And the user clicks on Nutritional Drinks...................................passed
-And the user clicks on Sports Nutrition.....................................passed
-And the user clicks on sortBy dropdown......................................passed
-And user select SortOption from Excel 0 1...................................passed
-Then the user verifies the Sports Nutrition page is displayed...............passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on Home Essentials page - #1.1" time="2.172">
-<system-out><![CDATA[
-Given the user clicks on search bar.........................................passed
-When the user enters inputs from Excel 1 0..................................passed
-Then the user Clicks on Home Essentials Page................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="user Landing on Home Essentials page - #1.2" time="2.037">
-<system-out><![CDATA[
-Given the user clicks on search bar.........................................passed
-When the user enters inputs from Excel 1 1..................................passed
-Then the user Clicks on Home Essentials Page................................passed
-]]></system-out>
-</testcase>
-<testcase classname="Shop by Category Functionality" name="User enters invalid input in search bar - #1.1" time="6.525">
-<system-out><![CDATA[
-Given the user clicks on search bar.........................................passed
-When the user enters ivalid inputs from Excel 2 0...........................passed
-Then the user should see No results found or appropriate error message......passed
+Given User is on the Find Doctors page......................................passed
+When User clicks on Dermatology and navigates to Dermatologist page.........passed
+Then User enters an invalid specialty in the search bar.....................passed
+And clicks on the Search button.............................................passed
+Then The system should display No result found message......................passed
 ]]></system-out>
 </testcase>
 </testsuite>

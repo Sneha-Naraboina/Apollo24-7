@@ -16,7 +16,7 @@ Feature: Validate Find Doctors functionality on Apollo Pharmacy website
    @TC_03 
     Scenario Outline: Book an online consultation
      Given the user is on the Apollo Pharmacy homepage
-     When the user applies filters <sheetno><rowno> to find doctors
+     When the user applies filters <rowno><sheetno> to find doctors
      And selects a doctor from the filtered list and clicks on Online Consult
      And clicks on Continue
      Then validate tha login popup
@@ -29,24 +29,34 @@ Feature: Validate Find Doctors functionality on Apollo Pharmacy website
  
 
    @TC_04
-   Scenario Outline: Invalid Doctor search
+   Scenario Outline: Valid Doctor search
    Given User clicks on Dermatology and navigated to Dermatologist page
-   When User search on search bar
-   And search for invalid Doctor names <sheetno><rowno>
-   Then No results found message should be displayed 
+   When User clicks on search bar
+   And search for Valid Doctor names <sheetno> <rowno>
+   Then List of Doctors should be displayed with that name  
+   Then The selected doctor profile is displayed
    
   Examples:
    |sheetno|rowno|
-   |   1   |  0  |
-   |   1   |  1  |
+   |   1  |  0  |
+   |   1  |  1  |
    
- 	#@TC_05
- 	#Scenario: Try booking without login
- 	# Given User is on home page and navigated to booking page
-    # When User is not logged in 
-    # And User tries to book a consultation
-    # Then the user should be redirected to the login page
-
- 
+   @TC_05
+   Scenario: Validate ENT  doctor booking withpout login
+   Given User is on Apollo Pharmacy home page
+   When when user clicks on Find Doctors 
+   And User clicks on ENT speciality
+   Then should navigate to ENT consultation page 
+   And user selects a doctor from the list of dotors 
+   Then user tries to book consultation without login
+   Then login popup should be displayed
+   
+@TC_06
+   Scenario: Search with invalid specialty 
+    Given User is on the Find Doctors page
+    When User clicks on Dermatology and navigates to Dermatologist page
+    Then User enters an invalid specialty in the search bar
+    And clicks on the Search button
+    Then The system should display No result found message
 
 

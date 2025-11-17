@@ -1,39 +1,40 @@
+package com.parameters;
 
- package com.parameters;
- 
 import java.io.FileInputStream;
-import java.io.IOException;
-import org.apache.poi.ss.usermodel.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
- 
+
 public class ExcelReader {
-	public static String[] getRowData(int sheet, int row) throws IOException {
-	    String filePath = "src\\test\\resources\\ExcelData\\Brands.xlsx";
-	    FileInputStream file = new FileInputStream(filePath);
-	    Workbook workbook = new XSSFWorkbook(file);
-	    Sheet sheetNo = workbook.getSheetAt(sheet);
-	    DataFormatter formatter = new DataFormatter();
- 
-	    // Get header row to determine column count
-	    Row headerRow = sheetNo.getRow(0);
-	    int colCount = headerRow.getLastCellNum();
- 
-	    // Read target row
-	    Row rowNo = sheetNo.getRow(row);
-	    String[] rowData = new String[colCount];
-	    for (int j = 0; j < colCount; j++) {
-	        Cell cell = (rowNo != null) ? rowNo.getCell(j) : null;
-	        rowData[j] = (cell != null) ? formatter.formatCellValue(cell) : "";
+    //private String excelPath;
+    public XSSFWorkbook workbook;
+    public String filePath ="C:\\Training\\JAVA\\Apollo 24by7\\Apollo247\\src\\test\\resources\\ExcelReader\\Exceldata1.xlsx";
+
+//    public ExcelReader(String excelPath) {
+//        this.excelPath = excelPath;
+//    }
+
+    // Initialize workbook
+    public List<String> getRowData(int rowIndex, int sheetNo) throws Exception {
+	    List<String> rowData = new ArrayList<>();
+	    try (FileInputStream fis = new FileInputStream(filePath);
+	         Workbook workbook = new XSSFWorkbook(fis)) {
+	        Sheet sheet = workbook.getSheetAt(sheetNo);
+	        Row row = sheet.getRow(rowIndex);
+	        if (row != null) {
+	            for (Cell cell : row) {
+	                String value = cell.toString().trim();
+	                if (!value.isEmpty()) {
+	                    rowData.add(value);
+	                }
+	            }
+	        }
 	    }
- 
-	    workbook.close();
-	    file.close();
 	    return rowData;
-	}
- 
-	
 }
- 
-
-
-
+}
