@@ -1,22 +1,22 @@
 
 Feature: Search Medicines on Apollo 24/7
 @first
-  Scenario: Search with valid medicine name
-   Given user has to be on Home page
-   Given user be on buy medicine page
-   And Navigate to Searchbar
-    And Enter valid medicine name
-    And Click search
-    Then search related products should be displayed
+  Scenario: Search with valid test name
+   
+   Given user is on buy medicine page
+   And user clicks on the Lab Tests
+   And user cliks on the serach bar
+   And user enters valid test name from sheet <sheet> and row <row>
+   Then search related tests should be displayed
+   
+   Examples:
+
+	| sheet      | row  |
+	| 1          | 0    |
+	| 1          | 1    |
     
     
-    
-    
-    
-    
-    
-    
-    
+        
  @verify	
  Scenario: Verify Browse by Health Conditions section is visible and clickable
  	Given user be on buy medicine page

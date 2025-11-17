@@ -17,6 +17,7 @@ import com.parameters.ExcelReader;
 import com.parameters.ExcelReader1;
 import com.parameters.PropertyReader;
 import com.setup.BaseSteps;
+import com.setup.Reports;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -37,43 +38,49 @@ public class Profile extends BaseSteps {
     
      
 
-    @Given("user has to be on Home page")
-    public void user_has_to_be_on_home_page() {
-    	
-        homePage.validateHomePageTitle("Apollo 247");
-    }
-
-    @When("Navigate to Buy Medicine")
-    public void navigate_to_buy_medicine() {
-        homePage.clickBuyMedicines();
-    }
-
-    @And("Navigate to Searchbar")
-    public void navigate_to_searchbar() {
-        homePage.clickSearchBar();
-    }
-
-    @And("Enter valid medicine name")
-    public void enter_valid_medicine_name()  {
-        String filePath = System.getProperty("user.dir") + "/src/test/resources/ExcelData/TestInput.xlsx";
-        ExcelReader reader = new ExcelReader(filePath);
-        String searchValue = reader.getCellData(0, 0, 0);
-        homePage.enterMedicineName(searchValue);
-//    	homePage.enterMedicineName("Paracetamol");
-//        System.out.println("Searching for: " + searchValue);
-    }
-
-    @And("Click search")
-    public void click_search() {
-        // No need to implement anything here if search is triggered by ENTER key in enterMedicineName()
-        // If you have a separate search button, you can add a method in HomePage like `clickSearchButton()` and call it here.
-    }
-
-    @Then("search related products should be displayed")
-    public void search_related_products_should_be_displayed() {
-        //homePage.validateSearchResultsDisplayed();
-    }
+    //==================================================================================
     
+    @Given("user is on buy medicine page")
+    public void user_is_on_buy_medicine_page() {
+    	 homePage.clickBuyMedicines();
+        
+    }
+
+    @And("user clicks on the Lab Tests")
+    public void user_clicks_on_the_lab_tests() {
+    	 homePage.clickLabTest();
+        
+    }
+
+    @And("user cliks on the serach bar")
+    public void user_cliks_on_the_serach_bar() {
+    	homePage.clickSearch();
+        
+    }
+
+
+    
+    @And("user enters valid test name from sheet {int} and row {int}")
+    public void user_enters_valid_test_name_from_sheet_and_row(Integer int1, Integer int2) {
+    	
+    	String excelPathSO = prop.getProperty("ExcelPath1");
+	    String testName = ExcelReader.getName(excelPathSO, int1, int2);
+
+	    //Assert.assertNotNull(testName, "testName not found at sheet " + int1 + ", row " + int2);
+
+	    homePage.enterMedicine(testName);  //  Pass actual value
+	    System.out.println("Entered medicine: " + testName);
+    	
+        
+    }
+
+    @Then("search related tests should be displayed")
+    public void search_related_tests_should_be_displayed() {
+    	boolean verify = homePage.verify();
+    	Assert.assertTrue(verify);
+    	Reports.captureScreenshot(driver, "Scenario_01");
+    }
+//=============================================================================================
     
     
     
@@ -104,6 +111,7 @@ public class Profile extends BaseSteps {
     @Then("health conditions element should be displayed")
     public void health_conditions_element_should_be_displayed() {
         homePage2.healthconditionselementshouldbedisplayed();
+        Reports.captureScreenshot(driver, "Scenario_02");
     	
     	
 
@@ -173,20 +181,41 @@ public class Profile extends BaseSteps {
         
     
 
+//    @Then("the system should display results")
+//    public void the_system_should_display_results() {
+//    	Assert.assertTrue(homePage3.verifyProductDetailPage());
+    	
+// }
+    
+//    @Then("the system should display results")
+//    public void the_system_should_display_results() {
+//        String expectedMessage = "We’re sorry, the item you searched could not be found. Instead you can continue your search by uploading prescription!";
+//        Assert.assertTrue(homePage3.verifyErrorMessage(expectedMessage));
+//        
+//    }
+    
     @Then("the system should display results")
     public void the_system_should_display_results() {
-
-////    	String actual = searchInput.getAttribute("value");
-////    	String expected = medicineName; // From Excel
-//    	Assert.assertEquals(homePage.actual, expected, "Search box value does not match expected medicine!");
-	
-    	
-    	
-    	
-    	
-    	
-
-    }  
+        String expectedMessage = "We’re sorry, the item you searched could not be found. Instead you can continue your search by uploading prescription!";
+        Assert.assertTrue(homePage3.verifyErrorMessage(expectedMessage));
+        Reports.captureScreenshot(BaseSteps.driver, "MedicineName");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
    // --------------------------4th Scenario----------------------------------------------
     
     @When("user clicks on Get {int}% off on medicine")
@@ -195,12 +224,13 @@ public class Profile extends BaseSteps {
     }
     @When("user navigates to the upload prescriptions page")
     public void user_navigates_to_the_upload_prescriptions_page() {
-        // Write code here that turns the phrase above into concrete actions
-        //throw new io.cucumber.java.PendingException();
+        
+    	boolean verify = homePage3.navigateToGetmeds();
+    	Assert.assertTrue(verify);
     }
 
     @When("click on the view all categories in the product categories")
-    public void click_on_the_view_all_categories_in_the_product_categories() {
+    public void click_on_the_view_all_categories_in_the_product_categories() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
     	homePage3.clickViewAllCategory();
@@ -208,11 +238,15 @@ public class Profile extends BaseSteps {
     	
     }
 
-  
 //
     @Then("results should be displayed")
     public void results_should_be_displayed() {
-//    	homePage3.Check();
+    	homePage3.Check();
+    	//homePage3.Check();
+//    	boolean verify = homePage3.Check();
+//    	Assert.assertTrue(verify);
+    	//Reports.captureScreenshot(BaseSteps.driver, "view all");
+    	Reports.captureScreenshot(driver, "Scenario_04");
 //       
     }
 
@@ -252,6 +286,7 @@ public void verify_no_product_to_be_visible() {
     
 //	Assert.assertTrue(homePage3.Verify());
 	homePage3.Verify();
+	Reports.captureScreenshot(driver, "Scenario_05");
 }
 
 }

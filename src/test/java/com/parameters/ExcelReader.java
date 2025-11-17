@@ -1,32 +1,31 @@
 package com.parameters;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-public class ExcelReader {
-    File f;
-    FileInputStream fis;
-    XSSFWorkbook wb;
-    XSSFSheet sh;
+import java.util.ArrayList;
+import java.util.List;
  
-    public ExcelReader(String filepath) {
-        try {
-            f = new File(filepath);
-            fis = new FileInputStream(f);
-            wb = new XSSFWorkbook(fis);
-        } catch (IOException e) {
-            e.printStackTrace();
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+ 
+public class ExcelReader {
+public static String getName(String filePath, int sheetIndex, int rowIndex) {
+    try (FileInputStream fis = new FileInputStream(filePath);
+         Workbook workbook = new XSSFWorkbook(fis)) {
+ 
+        Sheet sheet = workbook.getSheetAt(sheetIndex);
+        Row row = sheet.getRow(rowIndex);
+        if (row != null) {
+            Cell cell = row.getCell(0);
+            if (cell != null) {
+                return cell.getStringCellValue().trim();
+            }
         }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-	public String getCellData(int sheetno, int row, int col) {
-        sh = wb.getSheetAt(sheetno);
-        DataFormatter formatter = new DataFormatter();
-        return formatter.formatCellValue(sh.getRow(row).getCell(col));
-    }
+ 
+return null;
 }
-
+}
