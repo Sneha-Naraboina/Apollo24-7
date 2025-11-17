@@ -50,6 +50,7 @@ public class Reports {
             e.printStackTrace();
         }
 
-        return "./screenshots/" + safeFileName; //here returning the folder with files
+        return "./screenshots/" + safeFileName; //here returning the folder with files ===uncomment
+        //return destFile.getAbsolutePath(); //=========here i edited
     }
 }
